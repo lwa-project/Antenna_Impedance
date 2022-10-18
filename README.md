@@ -14,4 +14,4 @@ There are three main scripts in the repository:
  * BurnsZ.txt: Model IME
  * A-NS_AntennaImpedance_062222.s1p: Antenna Impedance for A (N/S) polarization taken on 06/22/2022
  * B-EW_AntennaImpedance_062222.s1p: Antenna Impedance for B (E/W) polarization taken on 06/22/2022
- * A collection of .s2p files stored in Data/S2P/ (See "FEE_Bulk_Measurements.txt" for more information)
+ * A collection of .s2p files stored in Data/FEE_Bulk_Measurements/S2P/ (See "FEE_Bulk_Measurements.txt" for more information)
