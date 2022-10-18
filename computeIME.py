@@ -56,7 +56,10 @@ def main(args):
         header = f"""IME computed from file: {args.file}
 Freq [Hz]              IME
         """
-        np.savetxt('IME.txt', np.c_[freqs, IME], header=header)
+        if 'NS' in args.file:
+            np.savetxt('IME_NS.txt', np.c_[freqs, IME], header=header)
+        else:
+            np.savetxt('IME_EW.txt', np.c_[freqs, IME], header=header)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Read in .s1p from Keysight Technologies VNA to compute IME',

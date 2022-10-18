@@ -133,20 +133,26 @@ def main(args):
     #Save, if requested.
     if args.save:
         try:
-            header = f"""FEE S11 Data
+            header1 = f"""FEE S11 Data
 Freq [Hz]              S11              IMF
             """
-            np.savetxt('FEE.txt', np.c_[freqs, S11, IMF], header=header)
-            header = f"""FEE IMF Percentiles
+            header2 = f"""FEE IMF Percentiles
 Freq [Hz]              P16              P83
             """
-            np.savetext('IMF_percentiles.txt', np.c_[freqs, p16, p83], header=header)
+            if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
+                np.savetxt('IMF_NS.txt', np.c_[freqs[0,:], S11, IMF], header=header1)
+                np.savetxt('IMF_NS_Percentiles.txt', np.c_[freqs[0,:], p16, p83], header=header2)
+            elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
+                np.savetxt('IMF_EW.txt', np.c_[freqs[0,:], S11, IMF], header=header1)
+                np.savetxt('IMF_EW_Percentiles.txt', np.c_[freqs[0,:], p16, p83], header=header2)
+            else:
+                print('Unknown polarization of files. Please check inputs and rerun.')
 
         except NameError:
             header = f"""FEE S11 Data
 Freq [Hz]              S11
             """ 
-            np.savetxt('FEE.txt', np.c_[freqs, S11], header=header)
+            np.savetxt('S11.txt', np.c_[freqs[0,:], S11], header=header)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
