@@ -1,0 +1,20 @@
+Measurements 08 October 2022 in order shown below.
+Side A faces UP; Side B faces DOWN
+Measurements made in pairs A and B
+
+S/N	S/N
+0451(A)	0531(B)
+0273(A)	0340(B)
+0813(A)	0905(B)
+0738(A)	0856(B)
+0820(A)	0952(B)
+0715(A)	0860(B)
+0789(A)	0906(B)
+0839(A)	0971(B)
+0819(A)	0969(B)
+0763(A)	0934(B)
+
+Test Equipment:
+Copper Mountain Technologies M5045 VNA
+Agilent 85033D 3.5 mm Cal Kit
+FEE Test Fixture
