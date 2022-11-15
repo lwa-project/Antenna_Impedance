@@ -13,31 +13,34 @@ def main(args):
     for file in args.files:
         f = open(file, 'r')
         
-        #Skip the metadata header.
-        for i in range(5):
-            f.readline()
-
         #Read the data.
         freq = [] 
         S11_mag_db, S11_phase_deg = [], []
         S21_mag_db, S21_phase_deg = [], []
         S12_mag_db, S12_phase_deg = [], []
         S22_mag_db, S22_phase_deg = [], []
+        
         while True:
             line = f.readline()
-            if line == '':
+            
+            #Skip the metadata header.
+            if '!' in line or '#' in line:
+                continue
+            #Look for when we hit the end of the file.
+            elif line == '':
                 break
-            l = line.split()
+            else:
+                l = line.split()
 
-            freq.append(float(l[0]))
-            S11_mag_db.append(float(l[1]))
-            S11_phase_deg.append(float(l[2]))
-            S21_mag_db.append(float(l[3]))
-            S21_phase_deg.append(float(l[4]))
-            S12_mag_db.append(float(l[5]))
-            S12_phase_deg.append(float(l[6]))
-            S22_mag_db.append(float(l[7]))
-            S22_phase_deg.append(float(l[8]))
+                freq.append(float(l[0]))
+                S11_mag_db.append(float(l[1]))
+                S11_phase_deg.append(float(l[2]))
+                S21_mag_db.append(float(l[3]))
+                S21_phase_deg.append(float(l[4]))
+                S12_mag_db.append(float(l[5]))
+                S12_phase_deg.append(float(l[6]))
+                S22_mag_db.append(float(l[7]))
+                S22_phase_deg.append(float(l[8]))
 
         f.close()
 
@@ -64,7 +67,7 @@ def main(args):
             S = mag*np.exp(1j*phase)
             Sparams[mapper[i]].append(S)
 
-    #Convert to arrays and do some simple statistics.
+    #Convert to arrays and do some simple statistics if more than 1 file was given.
     freqs = np.array(freqs) 
     S11s = np.array(Sparams['11'])
     S21s = np.array(Sparams['21'])
@@ -137,9 +140,10 @@ def main(args):
         fig.suptitle(f'LWA FEE S-Parameters (N={len(args.files)})', fontsize=14)
         for (ax, S, Su, Sl) in zip([axes[0], axes[1], axes[2], axes[3]], [S11, S21, S12, S22], [S11u, S21u, S12u, S22u], [S11l, S21l, S12l, S22l]):
             ax.plot(freqs[0,:]/1e6, 20.0*np.log10(np.abs(S)), color='k', label='Mean')
-            ax.plot(freqs[0,:]/1e6, 20.0*np.log10(Su), 'r--', label=r'$1\sigma$ Bound')
-            ax.plot(freqs[0,:]/1e6, 20.0*np.log10(Sl), 'r--')
-            ax.fill_between(freqs[0,:]/1e6, 20.0*np.log10(Sl), 20.0*np.log10(Su), color='r', alpha=0.25)
+            if len(args.files) > 1:
+                ax.plot(freqs[0,:]/1e6, 20.0*np.log10(Su), 'r--', label=r'$1\sigma$ Bound')
+                ax.plot(freqs[0,:]/1e6, 20.0*np.log10(Sl), 'r--')
+                ax.fill_between(freqs[0,:]/1e6, 20.0*np.log10(Sl), 20.0*np.log10(Su), color='r', alpha=0.25)
             ax.legend(loc=0, fontsize=12)
             ax.tick_params(which='both', direction='in', length=6, labelsize=12)
             if ax == axes[2] or ax == axes[3]:
@@ -153,9 +157,10 @@ def main(args):
             fig, ax = plt.subplots(1,1,num=2)
             fig.suptitle('Impedance Matching Factor', fontsize=14)
             ax.plot(freqs[0,:]/1e6, IMF, 'k-', label='Mean')
-            ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $83^{\rm{rd}}$ percentiles')
-            ax.plot(freqs[0,:]/1e6, p83, 'r--')
-            ax.fill_between(freqs[0,:]/1e6, p16, p83, color='r', alpha=0.25)
+            if len(args.files) > 1:
+                ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $83^{\rm{rd}}$ percentiles')
+                ax.plot(freqs[0,:]/1e6, p83, 'r--')
+                ax.fill_between(freqs[0,:]/1e6, p16, p83, color='r', alpha=0.25)
             ax.legend(loc=0, fontsize=12)
             ax.set_xlabel('Frequency [MHz]', fontsize=12)
             ax.set_ylabel('IMF', fontsize=12)
