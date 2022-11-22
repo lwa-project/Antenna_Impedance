@@ -57,7 +57,7 @@ def main(args):
         S22_phase_deg = np.array(S22_phase_deg)
 
         mapper = {0: '11', 1: '21', 2: '12', 3: '22'}
-        for i, (mag_db, phase_deg) in enumerate(zip([S11_mag_db,S21_mag_db,S12_mag_db,S22_mag_db], [S11_phase_deg,S21_phase_deg,S21_phase_deg,S22_phase_deg])):
+        for i, (mag_db, phase_deg) in enumerate(zip([S11_mag_db,S21_mag_db,S12_mag_db,S22_mag_db], [S11_phase_deg,S21_phase_deg,S12_phase_deg,S22_phase_deg])):
             #Convert magnitude from dB to linear scale
             #and phase from degrees to radians.
             mag = 10**(mag_db / 20.0)
@@ -98,35 +98,27 @@ def main(args):
     if args.ant is not None:
         f = open(args.ant[0], 'r')
         
-        #Skip the metadata header.
-        for i in range(12):
-            f.readline()
-
         #Read the data.
         freq, mag_db, phase_deg = [], [], []
         while True:
             line = f.readline()
-            if line == '':
+            if '!' in line or '#' in line:
+                continue
+            elif line == '':
                 break
-            l = line.split()
-
-            freq.append(float(l[0]))
-            mag_db.append(float(l[1]))
-            phase_deg.append(float(l[2]))
+            else:
+                l = line.split()
+                freq.append(float(l[0]))
+                mag_db.append(float(l[1]))
+                phase_deg.append(float(l[2]))
 
         f.close()
 
         freq = np.array(freq)
-        mag_db = np.array(mag_db)
-        phase_deg = np.array(phase_deg)
+        mag = 10**(np.array(mag_db)/20.0)
+        phase = np.array(phase_deg)*(np.pi/180.0)
 
-        #Convert magnitude from dB to linear scale
-        #and phase from degrees to radians.
-        antmag = 10**(mag_db / 20.0)
-        antphase = phase_deg * (np.pi/180.0)
-
-        #Build the full complex S11 parameter for the antenna.
-        antS11 = antmag*np.exp(1j*antphase)
+        antS11 = mag * np.exp(1j*phase)
 
         IMFs = (1.0 - np.abs(S11s)**2) * (1.0 - np.abs(antS11)**2) / np.abs(1.0 - S11s*antS11)**2
         
@@ -198,13 +190,13 @@ Freq [Hz]              S11
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-            description='Read in a collection of .s1p files and compute the mean reflection coefficient',
+            description='Read in a collection of .s2p files and compute the mean reflection coefficient',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('files', type=str, nargs='*',
-            help='.s1p files to read in')
+            help='.s2p files to read in')
     parser.add_argument('-a', '--ant', type=str, nargs=1, default=None,
-            help='.s1p file containing antenna reflection coefficient data. \
+            help='.s2p file containing antenna S-parameter data. \
             If this is not None, the output will be IMF, not IME')
     parser.add_argument('-n', '--no-plot', action='store_true',
             help='Do not plot the results')
