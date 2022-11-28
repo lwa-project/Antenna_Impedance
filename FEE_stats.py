@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+import sys
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -109,8 +110,18 @@ def main(args):
             else:
                 l = line.split()
                 freq.append(float(l[0]))
-                mag_db.append(float(l[1]))
-                phase_deg.append(float(l[2]))
+                #Select S11 antenna data if polarization A (NS) FEE data is given.
+                #Else, choose S22 (which is antenna polarization B (EW). 
+                if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
+                    mag_db.append(float(l[1]))
+                    phase_deg.append(float(l[2]))
+                elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
+                    mag_db.append(float(l[7]))
+                    phase_deg.append(float(l[8]))
+                else:
+                    print('Unknown polarization of FEE files. Unsure which antenna S parameter to use. Please recheck files and rerun.')
+                    sys.exit()
+
 
         f.close()
 
@@ -168,16 +179,16 @@ def main(args):
     if args.save:
         try:
             header1 = f"""FEE S11 Data
-Freq [Hz]              S11              IMF
+Freq [Hz]              Re(S11)                   Im(S11)                   IMF
             """
             header2 = f"""FEE IMF Percentiles
 Freq [Hz]              P16              P83
             """
             if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
-                np.savetxt('IMF_NS.txt', np.c_[freqs[0,:], S11, IMF], header=header1)
+                np.savetxt('IMF_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float)], header=header1)
                 np.savetxt('IMF_NS_Percentiles.txt', np.c_[freqs[0,:], p16, p83], header=header2)
             elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
-                np.savetxt('IMF_EW.txt', np.c_[freqs[0,:], S11, IMF], header=header1)
+                np.savetxt('IMF_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float)], header=header1)
                 np.savetxt('IMF_EW_Percentiles.txt', np.c_[freqs[0,:], p16, p83], header=header2)
             else:
                 print('Unknown polarization of files. Please check inputs and rerun.')
