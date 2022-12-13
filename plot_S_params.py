@@ -44,7 +44,7 @@ def main(args):
                 
         freqs = np.array(freqs)
 
-        ant = file.split('/')[-1].split('_')[0]
+        ant = file.split('/')[-1].split('_')[1]
         for ax, (param, s) in zip(axes, Sparams.items()):
             ax.set_title(param, fontsize=14)
             ax.plot(freqs/1e6, 20.0*np.log10(np.abs(s)), label='Antenna '+ant)
