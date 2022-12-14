@@ -1,0 +1,12 @@
+#MacOS
+.DS_Store
+
+#Images that might be saved locally.
+*.png
+*.pdf
+
+#NumPy zip files.
+*.npz
+
+#Text files.
+*.txt
