@@ -49,7 +49,6 @@ def main(args):
             ax.plot(freqs/1e6, 20.0*np.log10(np.abs(s)), label='Antenna '+ant if i == 0 else '')
 
     for ax in axes:
-        #ax.legend(loc=0, fontsize=12)
         ax.tick_params(which='both', direction='in', length=6, labelsize=12)
         if ax == axes[2] or ax == axes[3]:
             ax.set_xlabel('Frequency [MHz]', fontsize=12)
