@@ -9,11 +9,9 @@ def main(args):
     #Ask the user if they want to fill in station/antenna info.
     #This will be used for plotting.
     station = input('What station was this data taken at? ')
-    #ant = input('Which antenna was this measure made at '+station+'? ')
     
     #Build the plot.
     fig, axes = plt.subplots(2, 2, num=1, sharex=True)
-    #fig.suptitle(station+': Antenna '+ant, fontsize=16)
     fig.suptitle(station, fontsize=16)
     axes = axes.flatten()
 
@@ -44,19 +42,19 @@ def main(args):
                 
         freqs = np.array(freqs)
 
-        ant = file.split('/')[-1].split('_')[0]
-        for ax, (param, s) in zip(axes, Sparams.items()):
+        ant = file.split('/')[-1].split('_')[1]
+        for i, (ax, (param, s)) in enumerate(zip(axes, Sparams.items())):
             ax.set_title(param, fontsize=14)
-            ax.plot(freqs/1e6, 20.0*np.log10(np.abs(s)), label='Antenna '+ant)
+            ax.set_ylabel(param+' [dB]', fontsize=12)
+            ax.plot(freqs/1e6, 20.0*np.log10(np.abs(s)), label='Antenna '+ant if i == 0 else '')
 
     for ax in axes:
-        ax.legend(loc=0, fontsize=12)
-        ax.set_ylabel(param+' [dB]', fontsize=12)
+        #ax.legend(loc=0, fontsize=12)
         ax.tick_params(which='both', direction='in', length=6, labelsize=12)
         if ax == axes[2] or ax == axes[3]:
             ax.set_xlabel('Frequency [MHz]', fontsize=12)
 
-
+    fig.legend(fontsize=12)
     plt.show()
 
 
