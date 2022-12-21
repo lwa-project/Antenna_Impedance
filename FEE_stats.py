@@ -6,6 +6,8 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
+from scipy.interpolate import interp1d
+
 def main(args):
 
     #Read in the files and store all the data in lists.
@@ -164,6 +166,18 @@ def main(args):
                 ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $83^{\rm{rd}}$ percentiles')
                 ax.plot(freqs[0,:]/1e6, p83, 'r--')
                 ax.fill_between(freqs[0,:]/1e6, p16, p83, color='r', alpha=0.25)
+
+            if args.model:
+                model = np.loadtxt('Data/BurnsZ.txt')
+                imefreqs, re, im = model[:,0], model[:,1], model[:,2]
+                Z = re + 1j*im
+                ime = 1.0 - np.abs( (Z-100.0)/(Z+100.0) )**2
+            
+                intp = interp1d(imefreqs, ime, kind='cubic', bounds_error=False)
+                ime = intp(freqs[0,:]/1e6)
+
+                ax.plot(freqs[0,:]/1e6, ime, 'g-', label='Model IME')
+
             ax.legend(loc=0, fontsize=12)
             ax.set_xlabel('Frequency [MHz]', fontsize=12)
             ax.set_ylabel('IMF', fontsize=12)
@@ -211,6 +225,8 @@ if __name__ == '__main__':
             If this is not None, the output will be IMF, not IME')
     parser.add_argument('-n', '--no-plot', action='store_true',
             help='Do not plot the results')
+    parser.add_argument('-m', '--model', action='store_true',
+            help='Plot the IME model from Hicks et al 2012 with the IMF')
     parser.add_argument('-s', '--save', action='store_true',
             help='Save the results as a .txt file')
     
