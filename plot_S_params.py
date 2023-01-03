@@ -45,10 +45,13 @@ def main(args):
         ant = file.split('/')[-1].split('_')[1]
         if ant == '':
             ant = 'Unknown'
+        
+        ylim = {0: [-27.0, 0.0], 1: [-85.0, -20.0], 2: [-85.0, -20.0], 3: [-27.0, 0.0]}
         for i, (ax, (param, s)) in enumerate(zip(axes, Sparams.items())):
             ax.set_title(param, fontsize=14)
             ax.set_ylabel(param+' [dB]', fontsize=12)
             ax.plot(freqs/1e6, 20.0*np.log10(np.abs(s)), label='Antenna '+ant if i == 0 else '')
+            ax.set_ylim(bottom=ylim[i][0], top=ylim[i][1])
 
     for ax in axes:
         ax.tick_params(which='both', direction='in', length=6, labelsize=12)
