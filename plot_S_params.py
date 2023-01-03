@@ -43,6 +43,8 @@ def main(args):
         freqs = np.array(freqs)
 
         ant = file.split('/')[-1].split('_')[1]
+        if ant == '':
+            ant = 'Unknown'
         for i, (ax, (param, s)) in enumerate(zip(axes, Sparams.items())):
             ax.set_title(param, fontsize=14)
             ax.set_ylabel(param+' [dB]', fontsize=12)
