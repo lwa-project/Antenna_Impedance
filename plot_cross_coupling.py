@@ -60,6 +60,7 @@ def main(args):
     axes = axes.flatten()
     for (ax, s21, a1, a2, p1, p2) in zip(axes, S21s, configs['ant1'], configs['ant2'], configs['pol1'], configs['pol2']):
         ax.plot(freqs/1e6, 20.0*np.log10(np.abs(s21)), '-')
+        ax.set_ylim(-80.0, -25.0)
         ax.set_title('Antenna '+a1+' '+p1+' to Antenna '+a2+' '+p2, fontsize=12)
         ax.set_ylabel('S21 [dB]', fontsize=12)
         ax.tick_params(which='both', direction='in', length=6, labelsize=12)
@@ -71,6 +72,7 @@ def main(args):
     axes2 = axes2.flatten()
     for (ax, s12, a1, a2, p1, p2) in zip(axes2, S12s, configs['ant1'], configs['ant2'], configs['pol1'], configs['pol2']):
         ax.plot(freqs/1e6, 20.0*np.log10(np.abs(s12)), '-')
+        ax.set_ylim(-80.0, -25.0)
         ax.set_title('Antenna '+a1+' '+p1+' to Antenna '+a2+' '+p2, fontsize=12)
         ax.set_ylabel('S12 [dB]', fontsize=12)
         ax.tick_params(which='both', direction='in', length=6, labelsize=12)
