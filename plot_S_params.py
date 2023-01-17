@@ -43,6 +43,9 @@ def main(args):
         freqs = np.array(freqs)
 
         ant = file.split('/')[-1].split('_')[1]
+        if ant == '':
+            ant = 'Unknown'
+        
         ylim = {0: [-27.0, 0.0], 1: [-85.0, -20.0], 2: [-85.0, -20.0], 3: [-27.0, 0.0]}
         for i, (ax, (param, s)) in enumerate(zip(axes, Sparams.items())):
             ax.set_title(param, fontsize=14)

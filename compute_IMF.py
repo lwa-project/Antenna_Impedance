@@ -97,46 +97,53 @@ def main(args):
     S22u = np.abs(S22) + S22_sigma
     S22l = np.abs(S22) - S22_sigma
     
-    #Compute IMF if the antenna file was given.
-    if args.ant is not None:
-        f = open(args.ant[0], 'r')
-        
-        #Read the data.
-        freq, mag_db, phase_deg = [], [], []
-        while True:
-            line = f.readline()
-            if '!' in line or '#' in line:
-                continue
-            elif line == '':
-                break
-            else:
-                l = line.split()
-                freq.append(float(l[0]))
-                #Select S11 antenna data if polarization A (NS) FEE data is given.
-                #Else, choose S22 (which is antenna polarization B (EW). 
-                if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
-                    mag_db.append(float(l[1]))
-                    phase_deg.append(float(l[2]))
-                elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
-                    mag_db.append(float(l[7]))
-                    phase_deg.append(float(l[8]))
+    #Compute IMF if one or more antenna files were given.
+    if args.ants is not None:
+        IMFs = []
+        for file in args.ants:
+            f = open(file, 'r')
+
+            #Read the data.
+            freq, mag_db, phase_deg = [], [], []
+            while True:
+                line = f.readline()
+                if '!' in line or '#' in line:
+                    continue
+                elif line == '':
+                    break
                 else:
-                    print('Unknown polarization of FEE files. Unsure which antenna S parameter to use. Please recheck files and rerun.')
-                    sys.exit()
+                    l = line.split()
+                    freq.append(float(l[0]))
+                    #Select S11 antenna data if polarization A (NS) FEE data is given.
+                    #Else, choose S22 (which is antenna polarization B (EW).
+                    if all('A' in F for F in args.files) or all('NS' in F for F in args.files):
+                        mag_db.append(float(l[1]))
+                        phase_deg.append(float(l[2]))
+                    elif all('B' in F for F in args.files) or all('EW' in F for F in args.files):
+                        mag_db.append(float(l[7]))
+                        phase_deg.append(float(l[8]))
+                    else:
+                        print('Unknown polarization of FEE files. Unsure which antenna S parameter to use. Please recheck files and rerun.')
+                        sys.exit()
 
+            f.close()
 
-        f.close()
+            freq = np.array(freq)
+            mag = 10**(np.array(mag_db)/20.0)
+            phase = np.array(phase_deg)*(np.pi/180.0)
 
-        freq = np.array(freq)
-        mag = 10**(np.array(mag_db)/20.0)
-        phase = np.array(phase_deg)*(np.pi/180.0)
+            antS11 = mag * np.exp(1j*phase)
 
-        antS11 = mag * np.exp(1j*phase)
+            imfs = (1.0 - np.abs(S11s)**2) * (1.0 - np.abs(antS11)**2) / np.abs(1.0 - S11s*antS11)**2
+            IMFs.append(imfs)
 
-        IMFs = (1.0 - np.abs(S11s)**2) * (1.0 - np.abs(antS11)**2) / np.abs(1.0 - S11s*antS11)**2
+        IMFs = np.array(IMFs)
         
-        IMF = np.mean(IMFs, axis=0)
-        p16, p83 = np.percentile(IMFs, q=[16, 83], axis=0)
+        IMF = np.mean(IMFs, axis=(0,1))
+        p16, p83 = np.percentile(IMFs, q=[16, 83], axis=(0,1))
+
+    #Convert S21 into a FEE forward power gain correction
+    feeGain = np.abs(S21)**2
 
     #Plot the reflection coefficient of the FEE and the IMF, if computed.
     if not args.no_plot:
@@ -160,7 +167,7 @@ def main(args):
 
         try:
             fig, ax = plt.subplots(1,1,num=2)
-            fig.suptitle('Impedance Matching Factor', fontsize=14)
+            ax.set_title('Impedance Matching Factor', fontsize=14)
             ax.plot(freqs[0,:]/1e6, IMF, 'k-', label='Mean')
             if len(args.files) > 1:
                 ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $83^{\rm{rd}}$ percentiles')
@@ -192,43 +199,61 @@ def main(args):
     #Save, if requested.
     if args.save:
         try:
-            header1 = f"""FEE S11 Data
-Freq [Hz]              Re(S11)                   Im(S11)                   IMF
+            header1 = f"""FEE S11 and IMF Data
+Parameters Include:
+* Measurement Frequencies in Hz
+* Real and Imaginary Components of FEE S11
+* Impedance Matching Factor Derived from FEE and Antenna S11 Measurements
+* 16th and 83rd Percentiles of the IMF Distribution
+Freq [Hz]              Re(S11)                   Im(S11)                   IMF                      IMF_P16                  IMF_P83
             """
-            header2 = f"""FEE IMF Percentiles
-Freq [Hz]              P16              P83
+            header3 = f"""FEE S21 and Forward Gain Data
+Parameters Include:
+* Measurement Frequencies in Hz
+* Real and Imaginary Components of FEE S21
+* FEE Forward Gain ( = |S21|^2 )
+Freq [Hz]              Re(S21)                   Im(S21)                   Gain
             """
             if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
-                np.savetxt('IMF_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float)], header=header1)
-                np.savetxt('IMF_NS_Percentiles.txt', np.c_[freqs[0,:], p16, p83], header=header2)
+                np.savetxt('IMF_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float), p16, p83], header=header1)
+                np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header3)
             elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
-                np.savetxt('IMF_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float)], header=header1)
-                np.savetxt('IMF_EW_Percentiles.txt', np.c_[freqs[0,:], p16, p83], header=header2)
+                np.savetxt('IMF_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float), p16, p83], header=header1)
+                np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header3)
             else:
                 print('Unknown polarization of files. Please check inputs and rerun.')
 
         except NameError:
-            header = f"""FEE S11 Data
-Freq [Hz]              S11
-            """ 
-            np.savetxt('S11.txt', np.c_[freqs[0,:], S11], header=header)
+            header1 = f"""FEE S11 Data
+Freq [Hz]              Re(S11)                   Im(S11)
+            """
+            header2 = f"""FEE S21 Data
+Freq [Hz]              Re(S21)                   Im(S21)                   Gain
+            """
+            if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
+                np.savetxt('FEE_S11_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
+                np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
+            elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
+                np.savetxt('FEE_S11_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
+                np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-            description='Read in a collection of .s2p files and compute the mean reflection coefficient',
+            description='Read in a collection of .s2p files and either compute the mean reflection coefficient or combine them with antenna data to compute the mean IMF.',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('files', type=str, nargs='*',
             help='.s2p files to read in')
-    parser.add_argument('-a', '--ant', type=str, nargs=1, default=None,
-            help='.s2p file containing antenna S-parameter data. \
-            If this is not None, the output will be IMF, not IME')
+    parser.add_argument('-a', '--ants', type=str, nargs='*', default=None,
+            help='.s2p file(s) containing antenna S-parameter data.')
     parser.add_argument('-n', '--no-plot', action='store_true',
             help='Do not plot the results')
     parser.add_argument('-m', '--model', action='store_true',
             help='Plot the IME model from Hicks et al 2012 with the IMF')
     parser.add_argument('-s', '--save', action='store_true',
-            help='Save the results as a .txt file')
+            help='If antenna files are given, save the IMF results as a .txt file, else save FEE S11. \
+                Also saves FEE forward gain as a separate .txt file.')
     
     args = parser.parse_args()
     main(args)
