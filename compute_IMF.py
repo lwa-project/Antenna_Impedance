@@ -142,8 +142,8 @@ def main(args):
         IMF = np.mean(IMFs, axis=(0,1))
         p16, p83 = np.percentile(IMFs, q=[16, 83], axis=(0,1))
 
-    #Convert S21 into a FEE forward power gain correction
-    feeGain = np.abs(S21)**2
+    #Convert S21 into a FEE forward voltage gain correction
+    feeGain = np.abs(S21)
 
     #Plot the reflection coefficient of the FEE and the IMF, if computed.
     if not args.no_plot:
