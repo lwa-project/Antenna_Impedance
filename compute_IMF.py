@@ -145,6 +145,13 @@ def main(args):
     #Convert S21 into a FEE forward voltage gain correction
     feeGain = np.abs(S21)
 
+    #Load in the FEE Test Fixture HX62A forward gain and account for it.
+    hx = np.loadtxt('Data/HX62A/HX62A_S_Params.txt')
+    hxS21 = (hx[:,3] + 1j*hx[:,4]) / 2.0 #Factor of 2 since two HX62As were used to make the measurements.
+    hxGain = np.abs(hxS21)
+
+    feeGain -= hxGain
+
     #Plot the reflection coefficient of the FEE and the IMF, if computed.
     if not args.no_plot:
         fig, axes = plt.subplots(2, 2, num=1, sharex=True)
