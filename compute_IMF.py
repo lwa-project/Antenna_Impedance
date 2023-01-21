@@ -120,10 +120,10 @@ def main(args):
                     freq.append(float(l[0]))
                     #Select S11 antenna data if polarization A (NS) FEE data is given.
                     #Else, choose S22 (which is antenna polarization B (EW).
-                    if all('A' in F for F in args.files) or all('NS' in F for F in args.files):
+                    if all('A' in os.path.basename(F) for F in args.files) or all('NS' in os.path.basename(F) for F in args.files):
                         mag_db.append(float(l[1]))
                         phase_deg.append(float(l[2]))
-                    elif all('B' in F for F in args.files) or all('EW' in F for F in args.files):
+                    elif all('B' in os.path.basename(F) for F in args.files) or all('EW' in os.path.basename(F) for F in args.files):
                         mag_db.append(float(l[7]))
                         phase_deg.append(float(l[8]))
                     else:
