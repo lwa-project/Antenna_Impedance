@@ -241,10 +241,10 @@ Freq [Hz]              Re(S11)                   Im(S11)
             header2 = f"""FEE S21 Data
 Freq [Hz]              Re(S21)                   Im(S21)                   Gain
             """
-            if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
+            if all('A' in os.path.basename(f) for f in args.files) or all('NS' in os.path.basename(f) for f in args.files):
                 np.savetxt('FEE_S11_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
                 np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
-            elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
+            elif all('B' in os.path.basename(f) for f in args.files) or all('EW' in os.path.basename(f) for f in args.files):
                 np.savetxt('FEE_S11_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
                 np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
 
