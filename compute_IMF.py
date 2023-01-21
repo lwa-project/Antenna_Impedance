@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 
 from scipy.interpolate import interp1d
 
+DATA_PATH = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(DATA_PATH, 'Data')
+
 def main(args):
 
     #Read in the files and store all the data in lists.
@@ -146,7 +149,7 @@ def main(args):
     feeGain = np.abs(S21)
 
     #Load in the FEE Test Fixture HX62A forward gain and account for it.
-    hx = np.loadtxt('Data/HX62A/HX62A_S_Params.txt')
+    hx = np.loadtxt(os.path.join(DATA_PATH, 'HX62A', 'HX62A_S_Params.txt'))
     hxS21 = (hx[:,3] + 1j*hx[:,4]) / 2.0 #Factor of 2 since two HX62As were used to make the measurements.
     hxGain = np.abs(hxS21)
 
@@ -182,7 +185,7 @@ def main(args):
                 ax.fill_between(freqs[0,:]/1e6, p16, p83, color='r', alpha=0.25)
 
             if args.model:
-                model = np.loadtxt('Data/BurnsZ.txt')
+                model = np.loadtxt(os.path.join(DATA_PATH, 'BurnsZ.txt'))
                 imefreqs, re, im = model[:,0], model[:,1], model[:,2]
                 Z = re + 1j*im
                 ime = 1.0 - np.abs( (Z-100.0)/(Z+100.0) )**2
