@@ -254,7 +254,7 @@ if __name__ == '__main__':
             description='Read in a collection of .s2p files and either compute the mean reflection coefficient or combine them with antenna data to compute the mean IMF.',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('files', type=str, nargs='*',
+    parser.add_argument('files', type=str, nargs='+',
             help='.s2p files to read in')
     parser.add_argument('-a', '--ants', type=str, nargs='*', default=None,
             help='.s2p file(s) containing antenna S-parameter data.')
