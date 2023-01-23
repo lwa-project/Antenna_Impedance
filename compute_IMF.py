@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+import os
 import sys
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy.interpolate import interp1d
+
+DATA_PATH = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(DATA_PATH, 'Data')
 
 def main(args):
 
@@ -136,10 +140,10 @@ def main(args):
                     freq.append(float(l[0]))
                     #Select S11 antenna data if polarization A (NS) FEE data is given.
                     #Else, choose S22 (which is antenna polarization B (EW).
-                    if all('A' in F for F in args.files) or all('NS' in F for F in args.files):
+                    if all('A' in os.path.basename(F) for F in args.files) or all('NS' in os.path.basename(F) for F in args.files):
                         mag_db.append(float(l[1]))
                         phase_deg.append(float(l[2]))
-                    elif all('B' in F for F in args.files) or all('EW' in F for F in args.files):
+                    elif all('B' in os.path.basename(F) for F in args.files) or all('EW' in os.path.basename(F) for F in args.files):
                         mag_db.append(float(l[7]))
                         phase_deg.append(float(l[8]))
                     else:
@@ -167,7 +171,7 @@ def main(args):
         feeGain = np.abs(S21)
 
         #Load in the FEE Test Fixture HX62A forward gain and account for it.
-        hx = np.loadtxt('Data/HX62A/HX62A_S_Params.txt')
+        hx = np.loadtxt(os.path.join(DATA_PATH, 'HX62A', 'HX62A_S_Params.txt'))
         hxS21 = (hx[:,3] + 1j*hx[:,4]) / 2.0 #Factor of 2 since two HX62As were used to make the measurements.
         hxGain = np.abs(hxS21)
 
@@ -205,7 +209,7 @@ def main(args):
                 ax.fill_between(freqs[0,:]/1e6, p16, p83, color='r', alpha=0.25)
 
             if args.model:
-                model = np.loadtxt('Data/BurnsZ.txt')
+                model = np.loadtxt(os.path.join(DATA_PATH, 'BurnsZ.txt'))
                 imefreqs, re, im = model[:,0], model[:,1], model[:,2]
                 Z = re + 1j*im
                 ime = 1.0 - np.abs( (Z-100.0)/(Z+100.0) )**2
@@ -246,14 +250,14 @@ Parameters Include:
 * FEE Forward Gain ( = |S21|^2 )
 Freq [Hz]              Re(S21)                   Im(S21)                   Gain
             """
-            if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
+            if all('A' in os.path.basename(f) for f in args.files) or all('NS' in os.path.basename(f) for f in args.files):
                 np.savetxt('IMF_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float), p16, p83], header=header1)
                 if s2p:
                     np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
-            elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
+            elif all('B' in os.path.basename(f) for f in args.files) or all('EW' in os.path.basename(f) for f in args.files):
                 np.savetxt('IMF_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float), p16, p83], header=header1)
                 if s2p:
-                    np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
+                np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), (feeGain.view(float))**2], header=header2)
             else:
                 print('Unknown polarization of files. Please check inputs and rerun.')
 
@@ -265,22 +269,21 @@ Freq [Hz]              Re(S11)                   Im(S11)
                 header2 = f"""FEE S21 Data
 Freq [Hz]              Re(S21)                   Im(S21)                   Gain
             """
-            if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
+            if all('A' in os.path.basename(f) for f in args.files) or all('NS' in os.path.basename(f) for f in args.files):
                 np.savetxt('FEE_S11_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
                 if s2p:
                     np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
-            elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
+            elif all('B' in os.path.basename(f) for f in args.files) or all('EW' in os.path.basename(f) for f in args.files):
                 np.savetxt('FEE_S11_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
                 if s2p:
-                    np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
-
+                    np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), (feeGain.view(float))**2], header=header2)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
             description='Read in a collection of .s2p files and either compute the mean reflection coefficient or combine them with antenna data to compute the mean IMF.',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('files', type=str, nargs='*',
+    parser.add_argument('files', type=str, nargs='+',
             help='.s2p files to read in')
     parser.add_argument('-a', '--ants', type=str, nargs='*', default=None,
             help='.s2p file(s) containing antenna S-parameter data.')
