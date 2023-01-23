@@ -35,15 +35,26 @@ def main(args):
             else:
                 l = line.split()
 
+                #Get the frequencies and S11 info.
                 freq.append(float(l[0]))
                 S11_mag_db.append(float(l[1]))
                 S11_phase_deg.append(float(l[2]))
-                S21_mag_db.append(float(l[3]))
-                S21_phase_deg.append(float(l[4]))
-                S12_mag_db.append(float(l[5]))
-                S12_phase_deg.append(float(l[6]))
-                S22_mag_db.append(float(l[7]))
-                S22_phase_deg.append(float(l[8]))
+
+                #Try getting the other S-parameter data, if it exists
+                try:
+                    S21_mag_db.append(float(l[3]))
+                    S21_phase_deg.append(float(l[4]))
+                    S12_mag_db.append(float(l[5]))
+                    S12_phase_deg.append(float(l[6]))
+                    S22_mag_db.append(float(l[7]))
+                    S22_phase_deg.append(float(l[8]))
+
+                    #Keyword to keep track if this is an .S2P file or not
+                    s2p = True 
+
+                except IndexError:
+                    s2p = False
+                    
 
         f.close()
 
@@ -52,12 +63,21 @@ def main(args):
         
         S11_mag_db = np.array(S11_mag_db)
         S11_phase_deg = np.array(S11_phase_deg)
-        S12_mag_db = np.array(S12_mag_db)
-        S12_phase_deg = np.array(S12_phase_deg)
-        S21_mag_db = np.array(S21_mag_db)
-        S21_phase_deg = np.array(S21_phase_deg)
-        S22_mag_db = np.array(S22_mag_db)
-        S22_phase_deg = np.array(S22_phase_deg)
+
+        if s2p:
+            S12_mag_db = np.array(S12_mag_db)
+            S12_phase_deg = np.array(S12_phase_deg)
+            S21_mag_db = np.array(S21_mag_db)
+            S21_phase_deg = np.array(S21_phase_deg)
+            S22_mag_db = np.array(S22_mag_db)
+            S22_phase_deg = np.array(S22_phase_deg)
+        else:
+            S12_mag_db = np.zeros_like(freq)
+            S12_phase_deg = np.zeros_like(freq)
+            S21_mag_db = np.zeros_like(freq)
+            S21_phase_deg = np.zeros_like(freq)
+            S22_mag_db = np.zeros_like(freq)
+            S22_phase_deg = np.zeros_like(freq)
 
         mapper = {0: '11', 1: '21', 2: '12', 3: '22'}
         for i, (mag_db, phase_deg) in enumerate(zip([S11_mag_db,S21_mag_db,S12_mag_db,S22_mag_db], [S11_phase_deg,S21_phase_deg,S12_phase_deg,S22_phase_deg])):
@@ -142,15 +162,18 @@ def main(args):
         IMF = np.mean(IMFs, axis=(0,1))
         p16, p83 = np.percentile(IMFs, q=[16, 83], axis=(0,1))
 
-    #Convert S21 into a FEE forward voltage gain correction
-    feeGain = np.abs(S21)
+    #Convert S21 into a FEE forward voltage gain correction, if this is a S2P file.
+    if s2p:
+        feeGain = np.abs(S21)
 
-    #Load in the FEE Test Fixture HX62A forward gain and account for it.
-    hx = np.loadtxt('Data/HX62A/HX62A_S_Params.txt')
-    hxS21 = (hx[:,3] + 1j*hx[:,4]) / 2.0 #Factor of 2 since two HX62As were used to make the measurements.
-    hxGain = np.abs(hxS21)
+        #Load in the FEE Test Fixture HX62A forward gain and account for it.
+        hx = np.loadtxt('Data/HX62A/HX62A_S_Params.txt')
+        hxS21 = (hx[:,3] + 1j*hx[:,4]) / 2.0 #Factor of 2 since two HX62As were used to make the measurements.
+        hxGain = np.abs(hxS21)
 
-    feeGain -= hxGain
+        feeGain -= hxGain
+    else:
+        pass
 
     #Plot the reflection coefficient of the FEE and the IMF, if computed.
     if not args.no_plot:
@@ -174,7 +197,7 @@ def main(args):
 
         try:
             fig, ax = plt.subplots(1,1,num=2)
-            ax.set_title('Impedance Matching Factor', fontsize=14)
+            ax.set_title('Impedance Mismatch Factor', fontsize=14)
             ax.plot(freqs[0,:]/1e6, IMF, 'k-', label='Mean')
             if len(args.files) > 1:
                 ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $83^{\rm{rd}}$ percentiles')
@@ -214,7 +237,9 @@ Parameters Include:
 * 16th and 83rd Percentiles of the IMF Distribution
 Freq [Hz]              Re(S11)                   Im(S11)                   IMF                      IMF_P16                  IMF_P83
             """
-            header3 = f"""FEE S21 and Forward Gain Data
+
+            if s2p:
+                header2 = f"""FEE S21 and Forward Gain Data
 Parameters Include:
 * Measurement Frequencies in Hz
 * Real and Imaginary Components of FEE S21
@@ -223,10 +248,12 @@ Freq [Hz]              Re(S21)                   Im(S21)                   Gain
             """
             if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
                 np.savetxt('IMF_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float), p16, p83], header=header1)
-                np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header3)
+                if s2p:
+                    np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
             elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
                 np.savetxt('IMF_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), IMF.view(float), p16, p83], header=header1)
-                np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header3)
+                if s2p:
+                    np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
             else:
                 print('Unknown polarization of files. Please check inputs and rerun.')
 
@@ -234,15 +261,18 @@ Freq [Hz]              Re(S21)                   Im(S21)                   Gain
             header1 = f"""FEE S11 Data
 Freq [Hz]              Re(S11)                   Im(S11)
             """
-            header2 = f"""FEE S21 Data
+            if s2p:
+                header2 = f"""FEE S21 Data
 Freq [Hz]              Re(S21)                   Im(S21)                   Gain
             """
             if all('A' in f for f in args.files) or all('NS' in f for f in args.files):
                 np.savetxt('FEE_S11_NS.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
-                np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
+                if s2p:
+                    np.savetxt('FEE_Gain_NS.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
             elif all('B' in f for f in args.files) or all('EW' in f for f in args.files):
                 np.savetxt('FEE_S11_EW.txt', np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2)], header=header1)
-                np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
+                if s2p:
+                    np.savetxt('FEE_Gain_EW.txt', np.c_[freqs[0,:].view(float), S21.view(float).reshape(S21.size, 2), feeGain.view(float)], header=header2)
 
 
 if __name__ == '__main__':
