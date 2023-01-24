@@ -7,8 +7,6 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
-from scipy.interpolate import interp1d
-
 DATA_PATH = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH = os.path.join(DATA_PATH, '..')
 
@@ -16,8 +14,6 @@ def main(args):
 
     #Read in the files and store all the data in lists.
     freqs, S11s, S21s, S12s, S22s = [], [], [], [], []
-
-    Sparams = {'11': [], '21': [], '12': [], '22': []}
     for file in args.files:
         freq = [] 
         S11_mag_db, S11_phase_deg = [], []
@@ -62,15 +58,13 @@ def main(args):
             S22_mag_db = np.array(S22_mag_db)
             S22_phase_deg = np.array(S22_phase_deg)
 
-
             #First, correct S21 and S12 for the HX62A insertion loss.
-            hx = np.loadtxt(os.path.join(DATA_PATH, 'HX62A', 'HX62A_S_Params.txt'))
-            hx21 = (hx[:,3] + 1j*hx[:,4]) / 2.0 #Factor of 2 since two HX62As were used to make the measurements.
-            hx12 = (hx[:,5] + 1j*hx[:,6]) / 2.0
+            hx = np.loadtxt(os.path.join(DATA_PATH, 'HX62A', 'HX62A_Insertion_Loss.txt'))
+            hx21_db = hx[:,1] 
+            hx12_db = hx[:,2] 
 
-            hx21_db = 20.0*np.log10(np.abs(hx21))
-
-            S21_mag_db += hx21_db
+            S21_mag_db += np.abs(hx21_db)
+            S12_mag_db += np.abs(hx12_db)
 
             S12 = ( 10**(S12_mag_db / 20.0) ) * np.exp(1j*(S12_phase_deg * np.pi/180.0))
             S12s.append(S12)
@@ -120,14 +114,6 @@ def main(args):
     S12s = np.array(S12s)
     S22s = np.array(S22s)
 
-    #First, correct S21 and S12 for the HX62A insertion loss.
-    #hx = np.loadtxt(os.path.join(DATA_PATH, 'HX62A', 'HX62A_S_Params.txt'))
-    #hx21 = (hx[:,3] + 1j*hx[:,4]) / 2.0 #Factor of 2 since two HX62As were used to make the measurements.
-    #hx12 = (hx[:,5] + 1j*hx[:,6]) / 2.0
-
-    #S21s = np.abs(hx21)
-    #S12s = hx12
-
     #Mean and standard deviation.
     S11 = np.mean(S11s, axis=0)
     S11_sigma = np.std(S11s, axis=0)
@@ -147,14 +133,17 @@ def main(args):
     S12l = np.abs(S12) - S12_sigma
     S22u = np.abs(S22) + S22_sigma
     S22l = np.abs(S22) - S22_sigma
+
+    #FEE Forward Gain.
+    feeGain = np.abs(S21)
     
-    #Plot 
-    if not args.no_plot:
+    #Plot
+    if not args.no_plot: 
         fig, axes = plt.subplots(2, 2, num=1, sharex=True)
         axes = axes.flatten()
         fig.suptitle(f'LWA FEE S-Parameters (N={len(args.files)//2})', fontsize=14)
         for (ax, S, Su, Sl) in zip([axes[0], axes[1], axes[2], axes[3]], [S11, S21, S12, S22], [S11u, S21u, S12u, S22u], [S11l, S21l, S12l, S22l]):
-            ax.plot(freqs[0,:]/1e6, 20.0*np.log10(np.abs(S))-20.0*np.log10(np.abs(hx21)) if ax == axes[1] else 20.0*np.log10(np.abs(S)), color='k', label='Mean')
+            ax.plot(freqs[0,:]/1e6, 20.0*np.log10(np.abs(S)), color='k', label='Mean')
             if len(args.files) > 1:
                 ax.plot(freqs[0,:]/1e6, 20.0*np.log10(Su), 'r--', label=r'$1\sigma$ Bound')
                 ax.plot(freqs[0,:]/1e6, 20.0*np.log10(Sl), 'r--')
@@ -167,55 +156,51 @@ def main(args):
         for (ax, param) in zip([axes[0], axes[1], axes[2], axes[3]], ['S11', 'S21', 'S12', 'S22']):
             ax.set_title(param, fontsize=12)
             ax.set_ylabel(param+' [dB]', fontsize=12)
-
-        try:
-            fig, ax = plt.subplots(1,1,num=2)
-            ax.set_title('Impedance Mismatch Factor', fontsize=14)
-            ax.plot(freqs[0,:]/1e6, IMF, 'k-', label='Mean')
-            if len(args.files) > 1:
-                ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $83^{\rm{rd}}$ percentiles')
-                ax.plot(freqs[0,:]/1e6, p83, 'r--')
-                ax.fill_between(freqs[0,:]/1e6, p16, p83, color='r', alpha=0.25)
-
-            if args.model:
-                model = np.loadtxt('Data/BurnsZ.txt')
-                imefreqs, re, im = model[:,0], model[:,1], model[:,2]
-                Z = re + 1j*im
-                ime = 1.0 - np.abs( (Z-100.0)/(Z+100.0) )**2
-            
-                intp = interp1d(imefreqs, ime, kind='cubic', bounds_error=False)
-                ime = intp(freqs[0,:]/1e6)
-
-                ax.plot(freqs[0,:]/1e6, ime, 'g-', label='Model IME')
-
-            ax.legend(loc=0, fontsize=12)
-            ax.set_xlabel('Frequency [MHz]', fontsize=12)
-            ax.set_ylabel('IMF', fontsize=12)
-            ax.tick_params(which='both', direction='in', length=6, labelsize=12)
-        
-        except NameError:
-            plt.close(fig=2)
-            pass
-    
+ 
         plt.show()
 
+    header1 = """LWA FEE S-Parameters
+Originally, these were measured with a HX62A coupler on the coupler PCB in the FEE Test Fixture.
+However, thanks to the new calibration scheme the following corrections have been achieved:
+The S11 measurements de-embed the HX62A hyrbid coupler
+The S21 and S12 measurements account for the HX62A insertion loss
+Frequency [Hz]               Re(S11)                   Im(S11)               Re(S21)                   Im(S21)               Re(S12)                   Im(S12)               Re(S22)                   Im(S22)
+    """
+
+    data1 = np.c_[freqs[0,:].view(float), S11.view(float).reshape(S11.size, 2), S21.view(float).reshape(S21.size, 2), S12.view(float).reshape(S12.size, 2), S22.view(float).reshape(S22.size, 2)]
+
+    header2 = """LWA FEE Forward Voltage Gain
+Frequency [Hz]               Gain
+    """
+
+    data2 = np.c_[freqs[0,:].view(float), feeGain.view(float)]
+
+    if args.save:
+        if all('A' in os.path.basename(f) for f in args.files) or all('NS' in os.path.basename(f) for f in args.files):
+            np.savetxt('FEE_S_Params_NS.txt', data1, header=header1)
+            np.savetxt('FEE_Gain_NS.txt', data2, header=header2)
+            np.savez('FEE_S11_NS.npz', freqs=freqs, S11s=S11s)
+
+        elif all('B' in os.path.basename(f) for f in args.files) or all('EW' in os.path.basename(f) for f in args.files):
+            np.savetxt('FEE_S_Params_EW.txt', data1, header=header1)
+            np.savetxt('FEE_Gain_EW.txt', data2, header=header2)
+            np.savez('FEE_S11_EW.npz', freqs=freqs, S11s=S11s)
+    
+        else:
+            print('Unknown polarization of input files. Please check inputs and rerun.')
+            sys.exit()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-            description='Read in a collection of .s2p files and either compute the mean reflection coefficient or combine them with antenna data to compute the mean IMF.',
+            description='Read in a collection of FEE S-parameter measurements from various runs to plot the results and combine them all into one nice file.',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('files', type=str, nargs='*',
-            help='.s2p files to read in')
-    parser.add_argument('-a', '--ants', type=str, nargs='*', default=None,
-            help='.s2p file(s) containing antenna S-parameter data.')
+    parser.add_argument('files', type=str, nargs='+',
+            help='.s1p and .s2p files to read in')
     parser.add_argument('-n', '--no-plot', action='store_true',
-            help='Do not plot the results')
-    parser.add_argument('-m', '--model', action='store_true',
-            help='Plot the IME model from Hicks et al 2012 with the IMF')
+            help='Do not plot the FEE S-parameters')
     parser.add_argument('-s', '--save', action='store_true',
-            help='If antenna files are given, save the IMF results as a .txt file, else save FEE S11. \
-                Also saves FEE forward gain as a separate .txt file.')
-    
+            help='Save the S-parameters and the forward gain')
+
     args = parser.parse_args()
     main(args)
