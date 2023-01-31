@@ -134,6 +134,8 @@ def main(args):
     S22u = np.abs(S22) + S22_sigma
     S22l = np.abs(S22) - S22_sigma
 
+    S22l = np.clip(S22l, a_min=1e-5, a_max=1)
+
     #FEE Forward Gain.
     feeGain = np.abs(S21)
     
@@ -153,10 +155,11 @@ def main(args):
             if ax == axes[2] or ax == axes[3]:
                 ax.set_xlabel('Frequency [MHz]', fontsize=12)
 
-        for (ax, param) in zip([axes[0], axes[1], axes[2], axes[3]], ['S11', 'S21', 'S12', 'S22']):
+        for (ax, param, yu, yl) in zip([axes[0], axes[1], axes[2], axes[3]], ['S11', 'S21', 'S12', 'S22'], [0.0,38.0,-45.0,-5.0], [-45.0,22,-60.0,-60.0]):
             ax.set_title(param, fontsize=12)
             ax.set_ylabel(param+' [dB]', fontsize=12)
- 
+            ax.set_ylim(yl, yu)
+
         plt.show()
 
     header1 = """LWA FEE S-Parameters
