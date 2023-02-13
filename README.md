@@ -63,5 +63,5 @@ This creates two files named `IMF_NS.txt` and `IMF_EW.txt`, respectively, which 
 
 Relevant Documentation and Papers
 ---------------------------------
-[Hicks et al. (2012, PASP, 124, 1090)](https://iopscience.iop.org/article/10.1086/668121/pdf)
+[Hicks et al. (2012, PASP, 124, 1090)](https://iopscience.iop.org/article/10.1086/668121/pdf)  
 [Engineering Documentation for the LWA FEE (LWA Memo #190)](https://leo.phys.unm.edu/~lwa/memos/memo/lwa0190.pdf)
