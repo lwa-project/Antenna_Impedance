@@ -1,6 +1,6 @@
 Antenna_Impedance
 ===================
-[![Paper]()]()
+[![Paper]()]() [![Hicks et al. (2012, PASP, 124, 1090)](https://img.shields.io/badge/PASP-10.1086%2F668121-blue)](https://iopscience.iop.org/article/10.1086/668121/pdf) [![LWA Memo 190](https://img.shields.io/badge/lwa%20memo-190-blue)](https://leo.phys.unm.edu/~lwa/memos/memo/lwa0190.pdf)
 
 Description
 -----------
@@ -60,8 +60,3 @@ and
 python3 compute_IMF.py -ns Data/FEE/FEE_S11_EW.npz Data/LWA1/Dipole-Dipole/*
 ```
 This creates two files named `IMF_NS.txt` and `IMF_EW.txt`, respectively, which contain the IMF as a function of frequency along with the $16^{th}$ and $84^{th}$ percentile uncertainty bounds.
-
-Relevant Documentation and Papers
----------------------------------
-[Hicks et al. (2012, PASP, 124, 1090)](https://iopscience.iop.org/article/10.1086/668121/pdf)  
-[Engineering Documentation for the LWA FEE (LWA Memo #190)](https://leo.phys.unm.edu/~lwa/memos/memo/lwa0190.pdf)
