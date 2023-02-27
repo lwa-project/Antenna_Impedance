@@ -65,7 +65,7 @@ def main(args):
         fig, ax = plt.subplots(1,1,num=1)
         ax.set_title('Impedance Mismatch Factor', fontsize=14)
         ax.plot(freqs[0,:]/1e6, IMF, 'k-', label='Mean')
-        ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $83^{\rm{rd}}$ percentiles')
+        ax.plot(freqs[0,:]/1e6, p16, 'r--', label=r'$16^{\rm{th}}$ and $84^{\rm{th}}$ percentiles')
         ax.plot(freqs[0,:]/1e6, p83, 'r--')
         ax.fill_between(freqs[0,:]/1e6, p16, p83, color='r', alpha=0.25)
 
