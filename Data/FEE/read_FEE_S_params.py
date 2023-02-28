@@ -111,7 +111,7 @@ def main(args):
     if not args.no_plot: 
         fig, axes = plt.subplots(2, 2, num=1, sharex=True)
         axes = axes.flatten()
-        fig.suptitle(f'LWA FEE S-Parameters (N={len(args.files)//2})', fontsize=14)
+        fig.suptitle(f'LWA FEE S-Parameters (N={len(args.files)})', fontsize=14)
         for (ax, S, Su, Sl) in zip([axes[0], axes[1], axes[2], axes[3]], [S11, S21, S12, S22], [S11u, S21u, S12u, S22u], [S11l, S21l, S12l, S22l]):
             ax.plot(freqs[0,:]/1e6, 20.0*np.log10(np.abs(S)), color='k', label='Mean')
             if len(args.files) > 1:
