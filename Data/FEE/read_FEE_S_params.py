@@ -21,89 +21,55 @@ def main(args):
         S12_mag_db, S12_phase_deg = [], []
         S22_mag_db, S22_phase_deg = [], []
 
-        #If it is a S2P file, it's from the first run of measurements, so only grab S12, S21, and S22.
-        if '.s2p' in file:
-            f = open(file, 'r')
+        f = open(file, 'r')
         
-            #Read the data. 
-            while True:
-                line = f.readline()
-            
-                #Skip the metadata header.
-                if '!' in line or '#' in line:
-                    continue
-                #Look for when we hit the end of the file.
-                elif line == '':
-                    break
-                else:
-                    l = line.split()
+        #Read the data. 
+        while True:
+            line = f.readline()
+        
+            #Skip the metadata header.
+            if '!' in line or '#' in line:
+                continue
+            #Look for when we hit the end of the file.
+            elif line == '':
+                break
+            else:
+                l = line.split()
 
-                    #Get the frequencies and data.
-                    freq.append(float(l[0]))
+                #Get the frequencies and data.
+                freq.append(float(l[0]))
+                S11_mag_db.append(float(l[1]))
+                S11_phase_deg.append(float(l[2]))
+                S21_mag_db.append(float(l[3]))
+                S21_phase_deg.append(float(l[4]))
+                S12_mag_db.append(float(l[5]))
+                S12_phase_deg.append(float(l[6]))
+                S22_mag_db.append(float(l[7]))
+                S22_phase_deg.append(float(l[8]))
 
-                    S21_mag_db.append(float(l[3]))
-                    S21_phase_deg.append(float(l[4]))
-                    S12_mag_db.append(float(l[5]))
-                    S12_phase_deg.append(float(l[6]))
-                    S22_mag_db.append(float(l[7]))
-                    S22_phase_deg.append(float(l[8]))
+        freq = np.array(freq)
+        freqs.append(freq)
 
-            freq = np.array(freq)
-            freqs.append(freq)
-            
-            S12_mag_db = np.array(S12_mag_db)
-            S12_phase_deg = np.array(S12_phase_deg)
-            S21_mag_db = np.array(S21_mag_db)
-            S21_phase_deg = np.array(S21_phase_deg)
-            S22_mag_db = np.array(S22_mag_db)
-            S22_phase_deg = np.array(S22_phase_deg)
+        S11_mag_db = np.array(S11_mag_db)
+        S11_phase_deg = np.array(S11_phase_deg)
+        S12_mag_db = np.array(S12_mag_db)
+        S12_phase_deg = np.array(S12_phase_deg)
+        S21_mag_db = np.array(S21_mag_db)
+        S21_phase_deg = np.array(S21_phase_deg)
+        S22_mag_db = np.array(S22_mag_db)
+        S22_phase_deg = np.array(S22_phase_deg)
 
-            #First, correct S21 and S12 for the HX62A insertion loss.
-            hx = np.loadtxt(os.path.join(DATA_PATH, 'HX62A', 'HX62A_Insertion_Loss.txt'))
-            hx21_db = hx[:,1] 
-            hx12_db = hx[:,2] 
+        S11 = ( 10**(S11_mag_db / 20.0) ) * np.exp(1j*(S11_phase_deg * np.pi/180.0))
+        S11s.append(S11)
 
-            S21_mag_db += np.abs(hx21_db)
-            S12_mag_db += np.abs(hx12_db)
+        S12 = ( 10**(S12_mag_db / 20.0) ) * np.exp(1j*(S12_phase_deg * np.pi/180.0))
+        S12s.append(S12)
 
-            S12 = ( 10**(S12_mag_db / 20.0) ) * np.exp(1j*(S12_phase_deg * np.pi/180.0))
-            S12s.append(S12)
+        S21 = ( 10**(S21_mag_db / 20.0) ) * np.exp(1j*(S21_phase_deg * np.pi/180.0))
+        S21s.append(S21)
 
-            S21 = ( 10**(S21_mag_db / 20.0) ) * np.exp(1j*(S21_phase_deg * np.pi/180.0))
-            S21s.append(S21)
-
-            S22 = ( 10**(S22_mag_db / 20.0) ) * np.exp(1j*(S22_phase_deg * np.pi/180.0))
-            S22s.append(S22)
-
-        #If it is a .s1p file, it's a new measurement with the hybrid coupler de-embedded and so only S11 was measured.
-        elif '.s1p' in file:
-            f = open(file, 'r')
- 
-            while True:
-                line = f.readline()
-            
-                #Skip the metadata header.
-                if '!' in line or '#' in line:
-                    continue
-                #Look for when we hit the end of the file.
-                elif line == '':
-                    break
-                else:
-                    l = line.split()
-
-                    #Get the frequencies and S11 info.
-                    freq.append(float(l[0]))
-                    S11_mag_db.append(float(l[1]))
-                    S11_phase_deg.append(float(l[2]))
-
-            freq = np.array(freq)
-            freqs.append(freq)
-
-            S11_mag_db = np.array(S11_mag_db)
-            S11_phase_deg = np.array(S11_phase_deg)
-
-            S11 = ( 10**(S11_mag_db / 20.0) ) * np.exp(1j*(S11_phase_deg * np.pi/180.0))
-            S11s.append(S11)
+        S22 = ( 10**(S22_mag_db / 20.0) ) * np.exp(1j*(S22_phase_deg * np.pi/180.0))
+        S22s.append(S22)
 
         f.close()
 
@@ -115,26 +81,28 @@ def main(args):
     S22s = np.array(S22s)
 
     #Mean and standard deviation.
-    S11 = np.mean(S11s, axis=0)
-    S11_sigma = np.std(S11s, axis=0)
-    S21 = np.mean(S21s, axis=0)
-    S21_sigma = np.std(S21s, axis=0)
-    S12 = np.mean(S12s, axis=0)
-    S12_sigma = np.std(S12s, axis=0)
-    S22 = np.mean(S22s, axis=0)
-    S22_sigma = np.std(S22s, axis=0)
+    if len(args.files) > 1:
+        S11 = np.mean(S11s, axis=0)
+        S11_sigma = np.std(S11s, axis=0)
+        S21 = np.mean(S21s, axis=0)
+        S21_sigma = np.std(S21s, axis=0)
+        S12 = np.mean(S12s, axis=0)
+        S12_sigma = np.std(S12s, axis=0)
+        S22 = np.mean(S22s, axis=0)
+        S22_sigma = np.std(S22s, axis=0)
 
-    #Compute the upper and lower 1 sigma bounds for each.
-    S11u = np.abs(S11) + S11_sigma
-    S11l = np.abs(S11) - S11_sigma
-    S21u = np.abs(S21) + S21_sigma
-    S21l = np.abs(S21) - S21_sigma
-    S12u = np.abs(S12) + S12_sigma
-    S12l = np.abs(S12) - S12_sigma
-    S22u = np.abs(S22) + S22_sigma
-    S22l = np.abs(S22) - S22_sigma
-
-    S22l = np.clip(S22l, a_min=1e-5, a_max=1)
+        #Compute the upper and lower 1 sigma bounds for each.
+        S11u = np.abs(S11) + S11_sigma
+        S11l = np.abs(S11) - S11_sigma
+        S21u = np.abs(S21) + S21_sigma
+        S21l = np.abs(S21) - S21_sigma
+        S12u = np.abs(S12) + S12_sigma
+        S12l = np.abs(S12) - S12_sigma
+        S22u = np.abs(S22) + S22_sigma
+        S22l = np.abs(S22) - S22_sigma
+        S22l = np.clip(S22l, a_min=1e-5, a_max=1)
+    else:
+        pass
 
     #FEE Forward Gain.
     feeGain = np.abs(S21)
@@ -143,7 +111,7 @@ def main(args):
     if not args.no_plot: 
         fig, axes = plt.subplots(2, 2, num=1, sharex=True)
         axes = axes.flatten()
-        fig.suptitle(f'LWA FEE S-Parameters (N={len(args.files)//2})', fontsize=14)
+        fig.suptitle(f'LWA FEE S-Parameters (N={len(args.files)})', fontsize=14)
         for (ax, S, Su, Sl) in zip([axes[0], axes[1], axes[2], axes[3]], [S11, S21, S12, S22], [S11u, S21u, S12u, S22u], [S11l, S21l, S12l, S22l]):
             ax.plot(freqs[0,:]/1e6, 20.0*np.log10(np.abs(S)), color='k', label='Mean')
             if len(args.files) > 1:
@@ -163,10 +131,6 @@ def main(args):
         plt.show()
 
     header1 = """LWA FEE S-Parameters
-Originally, these were measured with a HX62A coupler on the coupler PCB in the FEE Test Fixture.
-However, thanks to the new calibration scheme the following corrections have been achieved:
-The S11 measurements de-embed the HX62A hyrbid coupler
-The S21 and S12 measurements account for the HX62A insertion loss
 Frequency [Hz]               Re(S11)                   Im(S11)               Re(S21)                   Im(S21)               Re(S12)                   Im(S12)               Re(S22)                   Im(S22)
     """
 
@@ -195,11 +159,11 @@ Frequency [Hz]               Gain
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-            description='Read in a collection of FEE S-parameter measurements from various runs to plot the results and combine them all into one nice file.',
+            description='Read in a collection of FEE S-parameter measurements to plot the results and save them as a text file.',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('files', type=str, nargs='+',
-            help='.s1p and .s2p files to read in')
+            help='.s2p files to read in')
     parser.add_argument('-n', '--no-plot', action='store_true',
             help='Do not plot the FEE S-parameters')
     parser.add_argument('-s', '--save', action='store_true',
