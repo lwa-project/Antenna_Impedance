@@ -1,0 +1,141 @@
+32669702351917
+LWA Balun 2020
+1008CS
+Inductor 1008 4.7uH Unshld 5%
+Coilcraft Inductor CS1008
+0
+2
+2
+LWA Balun 2020
+1008CS_RES
+Inductor 1008 4.7uH Unshld 5%
+Coilcraft Inductor CS1008
+0
+4
+2
+LWA Balun 2020
+1008PS
+Inductor PS1008 4.7uH Shld 10%
+Coilcraft Inductor PS1008
+0
+2
+2
+LWA Balun 2020
+2035-09-SM-RPLF
+GDT 90V 5KA 2 POLE SURFACE MOUNT
+GDT BOURNS 2035-09-SM
+0
+2
+2
+LWA Balun 2020
+AMT-2
+Magic Tee, 50 - 200 MHz, 180 deg Hybrid, 50Ω
+Hybrid, Mini-Circuits
+0
+6
+6
+LWA Balun 2020
+Bel_Fuse_0ZCJ_1206_3216
+Fuse SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351, Bel Fuse 0ZCJ, handsoldering
+Bel Fuse 0ZCJ fuse handsolder
+0
+2
+2
+LWA Balun 2020
+C_1206_3216Metric_Pad1.6x1.8mm
+Capacitor SMD 1206 (3216 Metric), rectangular end terminal, Legacy Altium Sizes/Distances
+capacitor handsolder
+0
+2
+2
+LWA Balun 2020
+ESR_20_mOhm
+
+
+0
+2
+2
+LWA Balun 2020
+Feedpoint
+LWA FEE Feedpoint
+Feedpont LWA
+0
+1
+1
+LWA Balun 2020
+GND_Bolt
+
+
+0
+1
+1
+LWA Balun 2020
+Harwin_TP_S1751-46R
+
+
+0
+1
+1
+LWA Balun 2020
+MCL_Gali
+MCL_Gali
+Gali Minicircuits
+0
+11
+3
+LWA Balun 2020
+RF_Attenuator_Susumu_PAT1220_3D
+http://www.susumu-usa.com/pdf/Foot_Print_38.pdf, https://www.susumu.co.jp/common/pdf/n_catalog_partition16_en.pdf
+2mm 1.2mm
+0
+3
+3
+LWA Balun 2020
+R_2512_6332Metric_Pad1.8x3.35mm
+Resistor SMD 2512 (6332 Metric), rectangular end terminal, Legacy Altium Sizes/Distances
+resistor handsolder
+0
+2
+2
+LWA Balun 2020
+R_2512_6332Metric_Pad1.40x3.35mm_HandSolder
+Resistor SMD 2512 (6332 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+resistor handsolder
+0
+2
+2
+LWA Balun 2020
+R_Cal_1206
+Resistor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+resistor handsolder
+0
+2
+2
+LWA Balun 2020
+S1621-46R
+JUMPER TIN SMD
+Jumper Harwin S1621
+0
+2
+2
+LWA Balun 2020
+SMA_142-0701-201
+CONN SMA JACK STR 50 OHM PCB
+SMA Cinch Johnson J500-ND
+0
+5
+2
+LWA Balun 2020
+Texas_DRB0008A_VSON-N8
+8-Lead Plastic VSON, 3x3mm Body, 0.65mm Pitch, S-PVSON-N8, Thermal Vias
+DRB0008A DFN 0.65 S-PVSON-N8
+0
+25
+9
+LWA Balun 2020
+Texas_DRB0008A_VSON-N8_No_Vias
+8-Lead Plastic VSON, 3x3mm Body, 0.65mm Pitch, S-PVSON-N8, Thermal Vias
+DRB0008A DFN 0.65 S-PVSON-N8
+0
+21
+9

@@ -1,0 +1,11 @@
+1. This board does not require assembly, but we require procurement of the parts in the BOM for delivery with PCBs.
+2. Please call 703-203-1302 for clarification before starting work.
+3. Hole locations are indicated in separate .drl file, included in a separate directory. That file takes precedence over this drawing.
+4. Board outline indicated in separate Edge.Cuts file, included with the gerber package. That file takes precedence over this drawing.
+5. Vendor to plate holes and exposed copper pads
+6. Board shall be nominally 63 mils in overall thickness
+7. Board shall have ENIG finish
+8. Silkscreen shall be non-conductive and white in color
+9. Note additional interior cutout specified in Edge.Cuts file
+10. Copper layers are nominally 1 Ounce thickness (1.4 mil)
+11. Soldermask shall be RED in color

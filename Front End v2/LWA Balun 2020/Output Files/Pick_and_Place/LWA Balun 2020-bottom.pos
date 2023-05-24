@@ -1,0 +1,7 @@
+### Module positions - created on Thu 14 Apr 2022 01:26:06 PM EDT ###
+### Printed by Pcbnew version 6.0.4-6f826c9f35~116~ubuntu20.04.1
+## Unit = mm, Angle = deg.
+## Side : bottom
+# Ref     Val           Package                PosX       PosY       Rot  Side
+S3        RF_OUT+DC_IN  SMA_142-0701-201  -164.2110   -81.7880  -45.0000  bottom
+## End

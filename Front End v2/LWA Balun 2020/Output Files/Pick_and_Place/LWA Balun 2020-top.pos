@@ -1,0 +1,65 @@
+### Module positions - created on Thu 14 Apr 2022 01:26:06 PM EDT ###
+### Printed by Pcbnew version 6.0.4-6f826c9f35~116~ubuntu20.04.1
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val              Package                                           PosX       PosY       Rot  Side
+ATT1      PAT1220-C-3DB    RF_Attenuator_Susumu_PAT1220_3D               154.7742   -79.6640  180.0000  top
+C1        10_uF            C_1210_3225Metric_Pad1.33x2.70mm_HandSolder   159.8045  -122.1140  180.0000  top
+C2        0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                130.7188  -108.8206  -135.0000  top
+C3        0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                162.0129  -108.7999  -45.0000  top
+C4        1000_pF          C_1206_3216Metric_Pad1.6x1.8mm                128.2275  -100.0760  180.0000  top
+C5        0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                140.5860  -100.0760  180.0000  top
+C6        0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                152.0220  -100.0760    0.0000  top
+C7        1000_pF          C_1206_3216Metric_Pad1.6x1.8mm                164.4680  -100.0760    0.0000  top
+C8        0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                150.3315   -73.1520  180.0000  top
+C9        0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                130.8100   -81.2405   90.0000  top
+C11       1000_pF          C_1206_3216Metric_Pad1.6x1.8mm                150.3315   -80.2640    0.0000  top
+C12       0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                168.0240   -92.8560  -90.0000  top
+C13       0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                175.3840   -92.8560  -90.0000  top
+C14       33_pF            C_0603_1608Metric_Pad1.08x0.95mm_HandSolder   158.8262   -89.3138   90.0000  top
+C15       0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                117.2210   -93.3420  -90.0000  top
+C16       22_uF            C_1210_3225Metric_Pad1.33x2.70mm_HandSolder   150.2045  -131.6990  180.0000  top
+C17       33_pF            C_0603_1608Metric_Pad1.08x0.95mm_HandSolder   155.5242   -93.4580   90.0000  top
+C18       10_uF            C_1210_3225Metric_Pad1.33x2.70mm_HandSolder   159.8045  -125.4252  180.0000  top
+C19       0.1_uF           C_1206_3216Metric_Pad1.6x1.8mm                158.2427   -75.6927  135.0000  top
+C20       OPT              C_0603_1608Metric_Pad1.08x0.95mm_HandSolder   150.9279   -86.2076    0.0000  top
+D1        SK24             D_SMB_Handsoldering                           167.9857  -114.2845   45.0000  top
+D2        BAV99LT1G        SOT-23                                        113.3790   -96.7900  -90.0000  top
+D3        BAV99LT1G        SOT-23                                        151.7315   -69.4850  -90.0000  top
+D4        BAV99LT1G        SOT-23                                        179.2290   -96.7900  -90.0000  top
+D8        Green            LED_1206_3216Metric                           112.2680   -81.0260    0.0000  top
+FB1       HZ0805C202R-10   L_0805_2012Metric_Pad1.15x1.40mm_HandSolder   136.7436  -107.0964   45.0000  top
+FB2       HZ0805C202R-10   L_0805_2012Metric_Pad1.15x1.40mm_HandSolder   155.8644  -107.0964  135.0000  top
+FB3       HZ0805C202R-10   L_0805_2012Metric_Pad1.15x1.40mm_HandSolder   142.6710   -73.1520    0.0000  top
+FP1       1/4-20_FREE-FIT  Feedpoint                                     101.3040  -100.0760    0.0000  top
+FP2       1/4-20_FREE-FIT  Feedpoint                                     191.3040  -100.0760    0.0000  top
+FP3       1/4-20_FREE-FIT  Feedpoint                                     146.3040   -55.0760    0.0000  top
+FP4       1/4-20_FREE-FIT  Feedpoint                                     146.3040  -145.0760    0.0000  top
+GDT1      2035-09-SM-RPLF  2035-09-SM-RPLF                               161.9289   -71.6241  -135.0000  top
+H1        AMT-32+          AMT-2                                         148.8440   -91.6940  180.0000  top
+JP1       JS1621-46R       S1621-46R                                     171.7040   -99.7060   90.0000  top
+JP2       JS1621-46R       S1621-46R                                     120.9040  -100.2140  -90.0000  top
+L1        4.7_uH           1008CS                                        133.8090  -110.0310   45.0000  top
+L2        4.7_uH           1008CS                                        158.7962  -110.0282  135.0000  top
+L3        4.7_uH           1008PS                                        169.3449   -86.9219  -45.0000  top
+L4        4.7_uH           1008CS                                        137.6640   -73.1520    0.0000  top
+L5        100_nH           1008CS                                        155.5242   -89.5818   90.0000  top
+L6        33_nH            1008CS                                        151.9936   -89.5818  -90.0000  top
+L7        33_nH            1008CS                                        154.3812   -86.2076  180.0000  top
+L8        OPT              1008CS_RES                                    154.3812   -83.0580    0.0000  top
+MH1       GND_Bolt         GND_Bolt                                      171.9296  -125.7016    0.0000  top
+MH2       GND_Bolt         GND_Bolt                                      120.6784   -74.4504    0.0000  top
+R1        91R              R_2512_6332Metric_Pad1.8x3.35mm               136.2710  -112.5166  -135.0000  top
+R2        91R              R_2512_6332Metric_Pad1.8x3.35mm               156.2100  -112.6436  -45.0000  top
+R3        51R              R_1206_3216Metric_Pad1.30x1.75mm_HandSolder   145.3140   -86.7410  180.0000  top
+R4        4.7k             R_1206_3216Metric_Pad1.30x1.75mm_HandSolder   169.9618   -76.0372   45.0000  top
+R5        4.7k             R_1206_3216Metric_Pad1.30x1.75mm_HandSolder   118.7659   -83.5869  135.0000  top
+R6        95.3R            R_2512_6332Metric_Pad1.8x3.35mm               134.1120   -82.5500   90.0000  top
+TP1       +V_TEST          Harwin_TP_S1751-46R                           173.8630   -72.1360   45.0000  top
+TP2       GND_TEST         Harwin_TP_S1751-46R                           189.2300   -61.5950    0.0000  top
+U1        GALI-74+         MCL_Gali                                      134.3914   -98.2980   90.0000  top
+U2        GALI-74+         MCL_Gali                                      158.2166  -101.8540  -90.0000  top
+U3        LM2937IMP-12     SOT-223-3_TabPin2                             151.3980  -122.1490  -90.0000  top
+U4        GALI-6+          MCL_Gali                                      143.8910   -78.0034  180.0000  top
+U5        TVS2201          Texas_DRB0008A_VSON-N8_No_Vias                175.6013  -105.1728  180.0000  top
+## End

@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/home/brian/Documents/KiCAD/LWA Cal Test Fixture 2022/LWA Cal Test 2022.kicad_sch</source>
+    <date>Thu 28 Apr 2022 08:59:52 PM EDT</date>
+    <tool>Eeschema 6.0.4-6f826c9f35~116~ubuntu20.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>LWA FEE</title>
+        <company>Long Wavelength Array</company>
+        <rev>1.1</rev>
+        <date>2022-04-26</date>
+        <source>LWA Cal Test 2022.kicad_sch</source>
+        <comment number="1" value="4555 Overlook Avenue SW"/>
+        <comment number="2" value="Washington, DC 20375"/>
+        <comment number="3" value="Brian Hicks / Whitham D. Reeve"/>
+        <comment number="4" value="U.S. Naval Research Laboratory"/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="FP1">
+      <value>1/4-20 FREE-FIT</value>
+      <footprint>LWA Balun 2020:Feedpoint</footprint>
+      <datasheet>NA</datasheet>
+      <fields>
+        <field name="Desc">LWA FEE Feedpoint</field>
+        <field name="MFGR">DNI</field>
+        <field name="MPN">DNI</field>
+        <field name="Power">NA</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">1000</field>
+        <field name="Stock Date">06/12/2020</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">NA</field>
+        <field name="Unit Cost">0.00</field>
+        <field name="Voltage">NA</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x01" description="Generic screw terminal, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="MPN" value="DNI"/>
+      <property name="MFGR" value="DNI"/>
+      <property name="Tolerance" value="NA"/>
+      <property name="Power" value="NA"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.00"/>
+      <property name="Stock" value="1000"/>
+      <property name="Stock Date" value="06/12/2020"/>
+      <property name="Desc" value="LWA FEE Feedpoint"/>
+      <property name="Voltage" value="NA"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005ef5b199</tstamps>
+    </comp>
+    <comp ref="FP2">
+      <value>1/4-20 FREE-FIT</value>
+      <footprint>LWA Balun 2020:Feedpoint</footprint>
+      <datasheet>NA</datasheet>
+      <fields>
+        <field name="Desc">LWA FEE Feedpoint</field>
+        <field name="MFGR">DNI</field>
+        <field name="MPN">DNI</field>
+        <field name="Power">NA</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">1000</field>
+        <field name="Stock Date">06/12/2020</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">NA</field>
+        <field name="Unit Cost">0.00</field>
+        <field name="Voltage">NA</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x01" description="Generic screw terminal, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="MPN" value="DNI"/>
+      <property name="MFGR" value="DNI"/>
+      <property name="Tolerance" value="NA"/>
+      <property name="Power" value="NA"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.00"/>
+      <property name="Stock" value="1000"/>
+      <property name="Stock Date" value="06/12/2020"/>
+      <property name="Desc" value="LWA FEE Feedpoint"/>
+      <property name="Voltage" value="NA"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005ef58e9f</tstamps>
+    </comp>
+    <comp ref="FP3">
+      <value>1/4-20 FREE-FIT</value>
+      <footprint>LWA Balun 2020:Feedpoint</footprint>
+      <datasheet>NA</datasheet>
+      <fields>
+        <field name="Desc">LWA FEE Feedpoint</field>
+        <field name="MFGR">DNI</field>
+        <field name="MPN">DNI</field>
+        <field name="Power">NA</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">1000</field>
+        <field name="Stock Date">06/12/2020</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">NA</field>
+        <field name="Unit Cost">0.00</field>
+        <field name="Voltage">NA</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x01" description="Generic screw terminal, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="MPN" value="DNI"/>
+      <property name="MFGR" value="DNI"/>
+      <property name="Tolerance" value="NA"/>
+      <property name="Power" value="NA"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.00"/>
+      <property name="Stock" value="1000"/>
+      <property name="Stock Date" value="06/12/2020"/>
+      <property name="Desc" value="LWA FEE Feedpoint"/>
+      <property name="Voltage" value="NA"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005f0bbed0</tstamps>
+    </comp>
+    <comp ref="FP4">
+      <value>1/4-20 FREE-FIT</value>
+      <footprint>LWA Balun 2020:Feedpoint</footprint>
+      <datasheet>NA</datasheet>
+      <fields>
+        <field name="Desc">LWA FEE Feedpoint</field>
+        <field name="MFGR">DNI</field>
+        <field name="MPN">DNI</field>
+        <field name="Power">NA</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">1000</field>
+        <field name="Stock Date">06/12/2020</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">NA</field>
+        <field name="Unit Cost">0.00</field>
+        <field name="Voltage">NA</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x01" description="Generic screw terminal, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="MPN" value="DNI"/>
+      <property name="MFGR" value="DNI"/>
+      <property name="Tolerance" value="NA"/>
+      <property name="Power" value="NA"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.00"/>
+      <property name="Stock" value="1000"/>
+      <property name="Stock Date" value="06/12/2020"/>
+      <property name="Desc" value="LWA FEE Feedpoint"/>
+      <property name="Voltage" value="NA"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005f0bec16</tstamps>
+    </comp>
+    <comp ref="G1">
+      <value>PCB Layer Stackup Detail</value>
+      <footprint>FabDrawingTemplates:FabDrawing-2Layer-Imperial_LWA</footprint>
+      <libsource lib="LWA_RF" part="PCB_Graphic" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-000060878dd7</tstamps>
+    </comp>
+    <comp ref="H1">
+      <value>AMT-32+</value>
+      <footprint>LWA Balun 2020:AMT-2</footprint>
+      <datasheet>https://www.minicircuits.com/pdfs/AMT-2+.pdf</datasheet>
+      <fields>
+        <field name="Desc">Magic Tee, 50 - 200 MHz, 180 deg Hybrid, 50Ω</field>
+        <field name="MFGR">Mini-Circuits</field>
+        <field name="MPN">AMT-32+</field>
+        <field name="Power">NA</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">66</field>
+        <field name="Stock Date">03/03/2022</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">NA</field>
+        <field name="Unit Cost">13.45</field>
+        <field name="Voltage">NA</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="LWA_RF" part="AMT-2+" description="180 Deg Magic Tee Hybrid, 50 - 200 MHz, 50Ω"/>
+      <property name="MPN" value="AMT-32+"/>
+      <property name="MFGR" value="Mini-Circuits"/>
+      <property name="Tolerance" value="NA"/>
+      <property name="Power" value="NA"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="13.45"/>
+      <property name="Stock" value="66"/>
+      <property name="Stock Date" value="03/03/2022"/>
+      <property name="Voltage" value="NA"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Desc" value="Magic Tee, 50 - 200 MHz, 180 deg Hybrid, 50Ω"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005ee43c6e</tstamps>
+    </comp>
+    <comp ref="MH1">
+      <value>GND_Bolt</value>
+      <footprint>LWA Balun 2020:GND_Bolt</footprint>
+      <libsource lib="LWA_RF" part="GND_Bolt" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005f21d271</tstamps>
+    </comp>
+    <comp ref="MH2">
+      <value>GND_Bolt</value>
+      <footprint>LWA Balun 2020:GND_Bolt</footprint>
+      <libsource lib="LWA_RF" part="GND_Bolt" description="Mounting Hole without connection"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005f21f600</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>100R</value>
+      <footprint>LWA Balun 2020:R_Cal_1206</footprint>
+      <datasheet>https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_11.pdf</datasheet>
+      <fields>
+        <field name="Desc">RES 100 OHM 1% 1/4W 1206</field>
+        <field name="MFGR">YAGEO</field>
+        <field name="MPN">RC1206FR-07100RL</field>
+        <field name="Power">0.250 W</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">2220743</field>
+        <field name="Stock Date">04/24/2022</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">1%</field>
+        <field name="Unit Cost">0.03</field>
+        <field name="Voltage">200 V</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="MPN" value="RC1206FR-07100RL"/>
+      <property name="MFGR" value="YAGEO"/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Power" value="0.250 W"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.03"/>
+      <property name="Stock" value="2220743"/>
+      <property name="Stock Date" value="04/24/2022"/>
+      <property name="Desc" value="RES 100 OHM 1% 1/4W 1206"/>
+      <property name="Voltage" value="200 V"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005f08424e</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>100R</value>
+      <footprint>LWA Balun 2020:R_Cal_1206</footprint>
+      <datasheet>https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_11.pdf</datasheet>
+      <fields>
+        <field name="Desc">RES 100 OHM 1% 1/4W 1206</field>
+        <field name="MFGR">YAGEO</field>
+        <field name="MPN">RC1206FR-07100RL</field>
+        <field name="Power">0.250 W</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">2220743</field>
+        <field name="Stock Date">04/24/2022</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">1%</field>
+        <field name="Unit Cost">0.03</field>
+        <field name="Voltage">200 V</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="MPN" value="RC1206FR-07100RL"/>
+      <property name="MFGR" value="YAGEO"/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Power" value="0.250 W"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.03"/>
+      <property name="Stock" value="2220743"/>
+      <property name="Stock Date" value="04/24/2022"/>
+      <property name="Desc" value="RES 100 OHM 1% 1/4W 1206"/>
+      <property name="Voltage" value="200 V"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>630de18d-3c2d-4590-ac8e-8a71ee058314</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>50R</value>
+      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder</footprint>
+      <datasheet>http://www.vishaypg.com/docs/63060/VSMP.pdf</datasheet>
+      <fields>
+        <field name="Desc">RES SMD 50 OHM 0.1% 0.3W 1206</field>
+        <field name="MFGR">Vishay Foil Resistors</field>
+        <field name="MPN">Y162550R0000B9W</field>
+        <field name="Power">0.3 W</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">2007</field>
+        <field name="Stock Date">04/26/2022</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">0.1%</field>
+        <field name="Unit Cost">0.56</field>
+        <field name="Voltage">87 V</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="MPN" value="Y162550R0000B9W"/>
+      <property name="MFGR" value="Vishay Foil Resistors"/>
+      <property name="Tolerance" value="0.1%"/>
+      <property name="Power" value="0.3 W"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.56"/>
+      <property name="Stock" value="2007"/>
+      <property name="Stock Date" value="04/26/2022"/>
+      <property name="Desc" value="RES SMD 50 OHM 0.1% 0.3W 1206"/>
+      <property name="Voltage" value="87 V"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b0cdfefb-6573-4f05-8ff9-3d77beb0003f</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>100R</value>
+      <footprint>LWA Balun 2020:R_Cal_1206</footprint>
+      <datasheet>https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_11.pdf</datasheet>
+      <fields>
+        <field name="Desc">RES 100 OHM 1% 1/4W 1206</field>
+        <field name="MFGR">YAGEO</field>
+        <field name="MPN">RC1206FR-07100RL</field>
+        <field name="Power">0.250 W</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">2220743</field>
+        <field name="Stock Date">04/24/2022</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">1%</field>
+        <field name="Unit Cost">0.03</field>
+        <field name="Voltage">200 V</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="MPN" value="RC1206FR-07100RL"/>
+      <property name="MFGR" value="YAGEO"/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Power" value="0.250 W"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.03"/>
+      <property name="Stock" value="2220743"/>
+      <property name="Stock Date" value="04/24/2022"/>
+      <property name="Desc" value="RES 100 OHM 1% 1/4W 1206"/>
+      <property name="Voltage" value="200 V"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8dc3354a-bc95-4894-a86a-ae78ea69a9f7</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>100R</value>
+      <footprint>LWA Balun 2020:R_Cal_1206</footprint>
+      <datasheet>https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_11.pdf</datasheet>
+      <fields>
+        <field name="Desc">RES 100 OHM 1% 1/4W 1206</field>
+        <field name="MFGR">YAGEO</field>
+        <field name="MPN">RC1206FR-07100RL</field>
+        <field name="Power">0.250 W</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">2220743</field>
+        <field name="Stock Date">04/24/2022</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">1%</field>
+        <field name="Unit Cost">0.03</field>
+        <field name="Voltage">200 V</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="MPN" value="RC1206FR-07100RL"/>
+      <property name="MFGR" value="YAGEO"/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Power" value="0.250 W"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.03"/>
+      <property name="Stock" value="2220743"/>
+      <property name="Stock Date" value="04/24/2022"/>
+      <property name="Desc" value="RES 100 OHM 1% 1/4W 1206"/>
+      <property name="Voltage" value="200 V"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f6123df2-5b55-48e9-acf1-53eff676d1ae</tstamps>
+    </comp>
+    <comp ref="S3">
+      <value>TEST</value>
+      <footprint>LWA Balun 2020:SMA_142-0701-201</footprint>
+      <datasheet>https://belfuse.com/resources/drawings/cinchconnectivitysolutions/johnson/dr-ccs-john-142-0701-201.pdf</datasheet>
+      <fields>
+        <field name="Desc">CONN SMA JACK STR 50 OHM PCB</field>
+        <field name="MFGR">Cinch Connectivity Solutions Johnson</field>
+        <field name="MPN">142-0701-201</field>
+        <field name="Power">NA</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">40347</field>
+        <field name="Stock Date">03/03/2022</field>
+        <field name="TYPE">SMA</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">NA</field>
+        <field name="Unit Cost">4.94</field>
+        <field name="Voltage">NA</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Connector" part="Conn_Coaxial" description="coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)"/>
+      <property name="MPN" value="142-0701-201"/>
+      <property name="MFGR" value="Cinch Connectivity Solutions Johnson"/>
+      <property name="Desc" value="CONN SMA JACK STR 50 OHM PCB"/>
+      <property name="Tolerance" value="NA"/>
+      <property name="Power" value="NA"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="4.94"/>
+      <property name="Stock" value="40347"/>
+      <property name="Stock Date" value="03/03/2022"/>
+      <property name="Voltage" value="NA"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="TYPE" value="SMA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005ef0e53a</tstamps>
+    </comp>
+    <comp ref="TP2">
+      <value>GND TEST</value>
+      <footprint>LWA Balun 2020:Harwin_TP_S1751-46R</footprint>
+      <datasheet>https://cdn.harwin.com/pdfs/S1751R.pdf</datasheet>
+      <fields>
+        <field name="Desc">PC TEST POINT NATURAL</field>
+        <field name="MFGR">Harwin Inc</field>
+        <field name="MPN">S1751-46R</field>
+        <field name="Power">NA</field>
+        <field name="Rating (A)">NA</field>
+        <field name="Stock">157264</field>
+        <field name="Stock Date">03/03/2022</field>
+        <field name="Temp Coeff">NA</field>
+        <field name="Tolerance">NA</field>
+        <field name="Unit Cost">0.20</field>
+        <field name="Voltage">NA</field>
+        <field name="Voltage Rating">NA</field>
+      </fields>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <property name="MPN" value="S1751-46R"/>
+      <property name="MFGR" value="Harwin Inc"/>
+      <property name="Tolerance" value="NA"/>
+      <property name="Power" value="NA"/>
+      <property name="Voltage Rating" value="NA"/>
+      <property name="Unit Cost" value="0.20"/>
+      <property name="Stock" value="157264"/>
+      <property name="Stock Date" value="03/03/2022"/>
+      <property name="Desc" value="PC TEST POINT NATURAL"/>
+      <property name="Voltage" value="NA"/>
+      <property name="Temp Coeff" value="NA"/>
+      <property name="Rating (A)" value="NA"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="LWA Cal Test 2022.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>00000000-0000-0000-0000-00005f0cb457</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector" part="Conn_Coaxial">
+      <description>coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)</description>
+      <docs> ~</docs>
+      <footprints>
+        <fp>*BNC*</fp>
+        <fp>*SMA*</fp>
+        <fp>*SMB*</fp>
+        <fp>*SMC*</fp>
+        <fp>*Cinch*</fp>
+        <fp>*LEMO*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_Coaxial</field>
+        <field name="Datasheet"> ~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="In" type="passive"/>
+        <pin num="2" name="Ext" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Screw_Terminal_01x01">
+      <description>Generic screw terminal, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Screw_Terminal_01x01</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="TestPoint">
+      <description>test point</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Pin*</fp>
+        <fp>Test*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">TP</field>
+        <field name="Value">TestPoint</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LWA_RF" part="AMT-2+">
+      <description>180 Deg Magic Tee Hybrid, 50 - 200 MHz, 50Ω</description>
+      <docs>https://www.minicircuits.com/pdfs/AMT-2+.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AMT-2+</field>
+        <field name="Datasheet">https://www.minicircuits.com/pdfs/AMT-2+.pdf</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="bidirectional"/>
+        <pin num="2" name="" type="bidirectional"/>
+        <pin num="3" name="" type="bidirectional"/>
+        <pin num="4" name="" type="bidirectional"/>
+        <pin num="5" name="" type="bidirectional"/>
+        <pin num="6" name="" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="LWA_RF" part="GND_Bolt">
+      <description>Mounting Hole without connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">GND_Bolt</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="LWA_RF" part="PCB_Graphic">
+      <fields>
+        <field name="Reference">G?</field>
+        <field name="Value">PCB_Graphic</field>
+      </fields>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>/usr/share/kicad/symbols//Connector.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>/usr/share/kicad/symbols//Device.kicad_sym</uri>
+    </library>
+    <library logical="LWA_RF">
+      <uri>/home/brian/Documents/KiCAD/LWA Cal Test Fixture 2022/Project Schematic Libraries/LWA_RF.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="GND">
+      <node ref="H1" pin="2" pintype="bidirectional"/>
+      <node ref="H1" pin="5" pintype="bidirectional"/>
+      <node ref="MH1" pin="1" pintype="bidirectional"/>
+      <node ref="MH2" pin="1" pintype="bidirectional"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="S3" pin="2" pinfunction="Ext" pintype="passive"/>
+      <node ref="TP2" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="2" name="Net-(H1-Pad1)">
+      <node ref="H1" pin="1" pintype="bidirectional"/>
+      <node ref="S3" pin="1" pinfunction="In" pintype="passive"/>
+    </net>
+    <net code="3" name="Net-(H1-Pad3)">
+      <node ref="H1" pin="3" pintype="bidirectional"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+    </net>
+    <net code="4" name="unconnected-(FP1-Pad1)">
+      <node ref="FP1" pin="1" pinfunction="Pin_1" pintype="passive"/>
+    </net>
+    <net code="5" name="unconnected-(FP2-Pad1)">
+      <node ref="FP2" pin="1" pinfunction="Pin_1" pintype="passive"/>
+    </net>
+    <net code="6" name="unconnected-(FP3-Pad1)">
+      <node ref="FP3" pin="1" pinfunction="Pin_1" pintype="passive+no_connect"/>
+    </net>
+    <net code="7" name="unconnected-(FP4-Pad1)">
+      <node ref="FP4" pin="1" pinfunction="Pin_1" pintype="passive+no_connect"/>
+    </net>
+    <net code="8" name="unconnected-(H1-Pad4)">
+      <node ref="H1" pin="4" pintype="bidirectional+no_connect"/>
+      <node ref="R1" pin="1" pintype="passive+no_connect"/>
+      <node ref="R2" pin="1" pintype="passive+no_connect"/>
+    </net>
+    <net code="9" name="unconnected-(H1-Pad6)">
+      <node ref="H1" pin="6" pintype="bidirectional+no_connect"/>
+      <node ref="R4" pin="1" pintype="passive+no_connect"/>
+      <node ref="R5" pin="1" pintype="passive+no_connect"/>
+    </net>
+  </nets>
+</export>

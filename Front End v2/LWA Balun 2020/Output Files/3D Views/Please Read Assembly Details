@@ -1,0 +1,16 @@
+1.  The final assembly of this build consists of a set of two boards; one flipped and rotated facing the other and bolted together.
+2.  The screws used to assemble the two boards are #6-32 pan head screws paird with corresonding nylon locking nuts. 
+3.  These boards are identical with the exception of the orientation of the SMA (connector S3).
+4.  On one of the boards, the connector designated S3 is installed on the bottom of the PCB (facing down). S3 is installed facing up on the second board in the assembly. 
+5.  A photograph of an earlier version of the finished assmebly is included in this directory to show connector orientation and assembly method.
+6.  Please call 703-203-1302 for clarification before starting work.
+7.  Hole locations are indicated in separate .drl file, included with the gerber package. That file takes precedence over this drawing.
+8.  Board outline indicated in separate Edge.Cuts file, included with the gerber package. That file takes precedence over this drawing.
+9.  Vendor to plate holes and exposed copper pads
+10. Board shall be nominally 63 mils in overall thickness
+11. Board shall have ENIG finish
+12. Silkscreen shall be non-conductive and white in color
+13. Note additional interior cutout specified in Edge.Cuts file
+14. Copper layers are nominally 1 Ounce thickness (1.4 mil)
+15. See 3D rendering for details regarding installation of connector S3 and assembly
+16. Soldermask shall be blue in color
