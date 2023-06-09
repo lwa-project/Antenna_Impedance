@@ -1,6 +1,0 @@
-(fp_lib_table
-  (lib (name "LWA Balun 2020")(type KiCad)(uri "${KIPRJMOD}/Project PCB Libraries/LWA Balun 2020.pretty")(options "")(descr ""))
-  (lib (name Solenoid_Array)(type KiCad)(uri /home/brian/Documents/KiCAD/Solenoid_Array/Solenoid_Array/Solenoid_Array.pretty)(options "")(descr ""))
-  (lib (name footprints)(type KiCad)(uri "${KIPRJMOD}/Project PCB Libraries/ul_TVS3301DRBR/KiCAD/2021-03-15_01-44-28/footprints.pretty")(options "")(descr ""))
-  (lib (name FabDrawingTemplates)(type KiCad)(uri "${KIPRJMOD}/Project PCB Libraries/FabDrawingTemplates.pretty")(options "")(descr ""))
-)

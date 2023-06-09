@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name LWA_RF)(type Legacy)(uri "${KIPRJMOD}/Project Schematic Libraries/LWA_RF.lib")(options "")(descr ""))
-)
