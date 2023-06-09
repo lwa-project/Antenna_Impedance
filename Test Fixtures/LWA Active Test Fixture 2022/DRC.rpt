@@ -1,0 +1,34 @@
+** Drc report for /home/brian/Documents/KiCAD/Calibration Fixtures Distribution/LWA Active Test Fixture 2022 Distribution 5-2023/LWA Active Test 2022.kicad_pcb **
+** Created on 2023-05-05 14:14:26 **
+
+** Found 0 DRC violations **
+
+** Found 0 unconnected pads **
+
+** Found 8 Footprint errors **
+[net_conflict]: Pad net (Net-(FP1-Pad1)) doesn't match net given by schematic (Net-(FP1-Pin_1)).
+    Local override; Severity: warning
+    @(1462.35 mils, 3927.00 mils): PTH pad 1 [Net-(FP1-Pad1)] of FP1
+[net_conflict]: Pad net (Net-(H1-Pad6)) doesn't match net given by schematic (Net-(FP2-Pin_1)).
+    Local override; Severity: warning
+    @(5005.65 mils, 3927.00 mils): PTH pad 1 [Net-(H1-Pad6)] of FP2
+[net_conflict]: Pad net (unconnected-(FP3-Pad1)) doesn't match net given by schematic (unconnected-(FP3-Pin_1-Pad1)).
+    Local override; Severity: warning
+    @(3234.00 mils, 2155.35 mils): PTH pad 1 [unconnected-(FP3-Pad1)] of FP3
+[net_conflict]: Pad net (unconnected-(FP4-Pad1)) doesn't match net given by schematic (unconnected-(FP4-Pin_1-Pad1)).
+    Local override; Severity: warning
+    @(3234.00 mils, 5698.65 mils): PTH pad 1 [unconnected-(FP4-Pad1)] of FP4
+[net_conflict]: Pad net (Net-(H1-Pad1)) doesn't match net given by schematic (Net-(S3-In)).
+    Local override; Severity: warning
+    @(3334.00 mils, 3597.00 mils): Pad 1 [Net-(H1-Pad1)] of H1 on F.Cu
+[net_conflict]: Pad net (Net-(FP1-Pad1)) doesn't match net given by schematic (Net-(FP1-Pin_1)).
+    Local override; Severity: warning
+    @(3134.00 mils, 3797.00 mils): Pad 4 [Net-(FP1-Pad1)] of H1 on F.Cu
+[net_conflict]: Pad net (Net-(H1-Pad6)) doesn't match net given by schematic (Net-(FP2-Pin_1)).
+    Local override; Severity: warning
+    @(3334.00 mils, 3797.00 mils): Pad 6 [Net-(H1-Pad6)] of H1 on F.Cu
+[net_conflict]: Pad net (Net-(H1-Pad1)) doesn't match net given by schematic (Net-(S3-In)).
+    Local override; Severity: warning
+    @(3939.00 mils, 3207.00 mils): PTH pad 1 [Net-(H1-Pad1)] of S3
+
+** End of Report **

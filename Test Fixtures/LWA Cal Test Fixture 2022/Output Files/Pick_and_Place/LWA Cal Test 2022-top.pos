@@ -1,0 +1,19 @@
+### Module positions - created on Fri 29 Apr 2022 01:33:00 PM EDT ###
+### Printed by Pcbnew version 6.0.4-6f826c9f35~116~ubuntu20.04.1
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val              Package                                           PosX       PosY       Rot  Side
+FP1       1/4-20_FREE-FIT  Feedpoint                                      37.1436   -99.7458    0.0000  top
+FP2       1/4-20_FREE-FIT  Feedpoint                                     127.1436   -99.7458    0.0000  top
+FP3       1/4-20_FREE-FIT  Feedpoint                                      82.1436   -54.7458    0.0000  top
+FP4       1/4-20_FREE-FIT  Feedpoint                                      82.1436  -144.7458    0.0000  top
+H1        AMT-32+          AMT-2                                          84.6836   -91.3638  180.0000  top
+MH1       GND_Bolt         GND_Bolt                                      107.7692  -125.3714    0.0000  top
+MH2       GND_Bolt         GND_Bolt                                       56.5180   -74.1202    0.0000  top
+R1        100R             R_Cal_1206                                     46.2788   -98.0688   90.0000  top
+R2        100R             R_Cal_1206                                     46.2788  -101.4228  -90.0000  top
+R3        50R              R_1206_3216Metric_Pad1.30x1.75mm_HandSolder    81.1536   -86.4108  180.0000  top
+R4        100R             R_Cal_1206                                    118.0084   -98.0688   90.0000  top
+R5        100R             R_Cal_1206                                    118.0084  -101.4228  -90.0000  top
+TP2       GND_TEST         Harwin_TP_S1751-46R                           125.0696   -61.2648    0.0000  top
+## End

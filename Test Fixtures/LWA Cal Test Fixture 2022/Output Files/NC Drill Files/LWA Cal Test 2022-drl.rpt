@@ -1,0 +1,26 @@
+Drill report for LWA Cal Test 2022.kicad_pcb
+Created on Fri 29 Apr 2022 01:32:37 PM EDT
+
+Copper Layer Stackup:
+    =============================================================
+    L1 :  F.Cu                      front
+    L2 :  B.Cu                      back
+
+
+Drill file 'LWA Cal Test 2022-PTH.drl' contains
+    plated through holes:
+    =============================================================
+    T1  0.381mm  0.0150"  (4 holes)
+    T2  0.711mm  0.0280"  (109 holes)
+    T3  1.575mm  0.0620"  (5 holes)
+    T4  3.797mm  0.1495"  (2 holes)
+    T5  7.112mm  0.2800"  (4 holes)
+
+    Total plated holes count 124
+
+
+Drill file 'LWA Cal Test 2022-NPTH.drl' contains
+    unplated through holes:
+    =============================================================
+
+    Total unplated holes count 0
