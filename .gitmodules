@@ -1,0 +1,3 @@
+[submodule "Front_End"]
+	path = Front_End
+	url = https://github.com/lwa-project/Front_End.git
