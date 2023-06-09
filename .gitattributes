@@ -1,1 +1,3 @@
 *.html linguist-detectable=false
+*.kicad_pro linguist-detectable=true
+*.kicad_sch linguist-detectable=true
