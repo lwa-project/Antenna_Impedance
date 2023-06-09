@@ -1,3 +1,9 @@
 [submodule "Front_End"]
 	path = Front_End
 	url = https://github.com/lwa-project/Front_End.git
+[submodule "Test Fixtures/LWA Active Test Fixture 2022/KiBoM"]
+	path = Test Fixtures/LWA Active Test Fixture 2022/KiBoM
+	url = https://github.com/SchrodingersGat/KiBoM.git
+[submodule "Test Fixtures/LWA Cal Test Fixture 2022/KiBoM"]
+	path = Test Fixtures/LWA Cal Test Fixture 2022/KiBoM
+	url = https://github.com/SchrodingersGat/KiBoM.git
